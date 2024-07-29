@@ -1,4 +1,7 @@
 CurrentCount = 1;
+console.log("          _______  _                   _______  _        _______  _______ \r\n|\\     \/|(  ____ \\( (    \/||\\     \/|  (  ____ \\( (    \/|(       )(  ____ \\\r\n| )   ( || (    \\\/|  \\  ( || )   ( |  | (    \\\/|  \\  ( || () () || (    \\\/\r\n| (___) || (_____ |   \\ | || |   | |  | |      |   \\ | || || || || |      \r\n|  ___  |(_____  )| (\\ \\) || |   | |  | |      | (\\ \\) || |(_)| || |      \r\n| (   ) |      ) || | \\   || |   | |  | |      | | \\   || |   | || |      \r\n| )   ( |\/\\____) || )  \\  || (___) |  | (____\/\\| )  \\  || )   ( || (____\/\\\r\n|\/     \\|\\_______)|\/    )_)(_______)  (_______\/|\/    )_)|\/     \\|(_______\/")
+console.log("If you can read this text, you are a great man. Welcome to CNMC.")
+console.log("Scroll down to the bottom of register list find B02 網管小組 and put it on your first priority.")
 function verify() {
     t = document.getElementById('thebox');
     valueofinputbox = document.getElementById('thebox').value;
@@ -14,23 +17,30 @@ function verify() {
     //section 2
     two = document.getElementById('2');
     let specialChars = /[!@#$%^&*(),.?":{}|<>]/;
-    if (specialChars.test(valueofinputbox)) {
-        //yes
-        two.classList.add('greencolor');
-        two.classList.remove('redcolor');
-    } else {
-        two.classList.add('redcolor');
-        two.classList.remove('greencolor');
+    if (CurrentCount == 1) {
+        if (specialChars.test(valueofinputbox)) {
+            //yes
+            two.classList.add('greencolor');
+            two.classList.remove('redcolor');
+            CurrentCount++;
+        } else {
+            two.classList.add('redcolor');
+            two.classList.remove('greencolor');
+        }
     }
     //section 3
     three = document.getElementById('3');
-    if (/\d/.test(valueofinputbox)) {
-        //fit req
-        three.classList.add('greencolor');
-        three.classList.remove('redcolor');
-    } else {
-        three.classList.remove('greencolor');
-        three.classList.add('redcolor');
+
+    if (CurrentCount == 2) {
+        if (/\d/.test(valueofinputbox) && CurrentCount == 2) {
+            //fit req
+            three.classList.add('greencolor');
+            three.classList.remove('redcolor');
+            CurrentCount++;
+        } else {
+            three.classList.remove('greencolor');
+            three.classList.add('redcolor');
+        }
     }
     //section 4
     four = document.getElementById('4');
@@ -80,5 +90,34 @@ function verify() {
         seven.classList.remove('greencolor');
         seven.classList.add('redcolor');
     }
+
+
+    //section 10
+    ten = document.getElementById('10');
+    
+    //section 11
+    //untest
+    eleven = document.getElementById('11');
+    if(CurrentCount==10){
+        flag = false;
+        thlistofpossibleans = valueofinputbox.match(/(0?[0-9]|[1-5][0-9])mins/g);
+        for(i = 0;i<thlistofpossibleans.length();i++){
+            number1 = thlistofpossibleans[i][0];
+            number2 = thlistofpossibleans[i][1];
+            finalnum = Number(number1)*10+Number(number2);
+            if(5<=finalnum&&finalnum<=10){
+                flag=true;
+            }
+        }
+        if(flag){
+            eleven.classList.add('greencolor');
+            eleven.classList.remove('redcolor');
+            CurrentCount++;
+        } else {
+            eleven.classList.remove('greencolor');
+            eleven.classList.add('redcolor');
+        }
+    }
+
 }
 valueofinputbox = document.getElementById('thebox').value;
