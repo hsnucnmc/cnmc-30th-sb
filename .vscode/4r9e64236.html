@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+  <title>hi</title>
+  <script>
+    // valieofinputbox = document.getElementById('thebox').value;
+  </script>
+  <style>
+    .title {
+      font-size: 100px;
+      background-color: green;
+    }
+    body {
+      background-color: blueviolet;
+    }
+    .inputbox {
+      height: 40px;
+      width: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="title">fgfgfg</div>
+  <textarea id="thebox" onkeyup="verify()">hi</textarea>
+  <script>
+    function verify() {
+      valieofinputbox = document.getElementById("thebox").value;
+      // var reg = new RegExp('/\d/','g');
+      let specialChars = /[!@#$%^&*(),.?":{}|<>]/;
+      if (!specialChars.test(valieofinputbox)) {
+        window.alert("dfsadfasdf");
+      }
+    }
+  </script>
+</body>
