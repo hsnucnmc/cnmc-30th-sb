@@ -1,8 +1,7 @@
+CurrentCount = 1;
 function verify(){
     t = document.getElementById('thebox');
     valueofinputbox = document.getElementById('thebox').value;
-    // var reg = new RegExp(' /\d/');
-    //section 1
     one = document.getElementById('1');
     if(valueofinputbox.length>0){
         //yes
