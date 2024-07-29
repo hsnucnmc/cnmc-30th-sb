@@ -54,7 +54,29 @@ function verify() {
             four.classList.add('redcolor');
         }
     }
-
+    //section 11
+    //untest
+    eleven = document.getElementById('11');
+    if(CurrentCount==10){
+        flag = false;
+        thlistofpossibleans = valueofinputbox.match(/(0?[0-9]|[1-5][0-9])mins/g);
+        for(i = 0;i<thlistofpossibleans.length();i++){
+            number1 = thlistofpossibleans[i][0];
+            number2 = thlistofpossibleans[i][1];
+            finalnum = Number(number1)*10+Number(number2);
+            if(5<=finalnum&&finalnum<=10){
+                flag=true;
+            }
+        }
+        if(flag){
+            eleven.classList.add('greencolor');
+            eleven.classList.remove('redcolor');
+            CurrentCount++;
+        } else {
+            eleven.classList.remove('greencolor');
+            eleven.classList.add('redcolor');
+        }
+    }
 
 }
 valueofinputbox = document.getElementById('thebox').value;
