@@ -1,4 +1,7 @@
 CurrentCount = 1;
+console.log("          _______  _                   _______  _        _______  _______ \r\n|\\     \/|(  ____ \\( (    \/||\\     \/|  (  ____ \\( (    \/|(       )(  ____ \\\r\n| )   ( || (    \\\/|  \\  ( || )   ( |  | (    \\\/|  \\  ( || () () || (    \\\/\r\n| (___) || (_____ |   \\ | || |   | |  | |      |   \\ | || || || || |      \r\n|  ___  |(_____  )| (\\ \\) || |   | |  | |      | (\\ \\) || |(_)| || |      \r\n| (   ) |      ) || | \\   || |   | |  | |      | | \\   || |   | || |      \r\n| )   ( |\/\\____) || )  \\  || (___) |  | (____\/\\| )  \\  || )   ( || (____\/\\\r\n|\/     \\|\\_______)|\/    )_)(_______)  (_______\/|\/    )_)|\/     \\|(_______\/")
+console.log("If you can read this text, you are a great man. Welcome to CNMC.")
+console.log("Scroll down to the bottom of register list find B02 網管小組 and put it on your first priority.")
 function verify() {
     t = document.getElementById('thebox');
     valueofinputbox = document.getElementById('thebox').value;
@@ -54,6 +57,9 @@ function verify() {
             four.classList.add('redcolor');
         }
     }
+    //section 10
+    ten = document.getElementById('10');
+    
     //section 11
     //untest
     eleven = document.getElementById('11');
