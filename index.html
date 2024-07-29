@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+    <title>hi</title>
+    <script src="text/javascript">
+    function verify(){
+        valueofinputbox = document.getElementById('thebox').value;
+        var reg = new RegExp('/^\d+$/');
+        if(reg.test(valueofinputbox)){
+            window.alret("oh yeah baby");
+        }
+        
+    }
+    valueofinputbox = document.getElementById('thebox').value;
+    </script>
+    <style>
+        .title{
+            font-size: 100px;
+            font-family: 'Courier New', Courier, monospace;
+            
+        }
+        body{
+            background-color: antiquewhite;
+        }
+        .inputbox{
+            height: 40px;
+            width: 200px;
+        }
+        textarea {
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">The password game</div>
+    <textarea id="thebox" onkeyup="verify()">hi there</textarea>
+</body>
