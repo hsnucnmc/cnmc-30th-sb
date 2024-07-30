@@ -6,6 +6,7 @@ console.log("If you can read this text, you are a great man. Welcome to CNMC.");
 console.log(
     "Scroll down to the bottom of register list find B02 網管小組 and put it on your first priority."
 );
+warm = true
 bool123 = true;
 clickbtn = false;
 function verify() {
@@ -358,3 +359,40 @@ document.body.addEventListener('keydown', function (e) {
         }
     }
 });
+//section 17
+seventeen = document.getElementById('17');
+if (CurrentCount >= 17) {
+    if (true) {
+        //fit req
+        seventeen.classList.add("greencolor");
+        seventeen.classList.remove("redcolor");
+        if (CurrentCount == 17) {
+            CurrentCount++;
+        }
+    } else {
+      seventeen.classList.remove("greencolor");
+      seventeen.classList.add("redcolor");
+    }
+}
+//section 18
+eighteen = document.getElementById('18');
+if (CurrentCount >= 18) {
+    if(warm){
+      chilongangry = document.getElementById("thebox").value + "🐛";
+    }
+    if (valueofinputbox.includes("🐛")) {
+        //fit req
+        eighteen.classList.add("greencolor");
+        eighteen.classList.remove("redcolor");
+        if (CurrentCount == 18) {
+            CurrentCount++;
+        }
+    } else {
+      for(i=0;i<valueofinputbox.length;i++){
+        var chilongangry = '🤓'.repeat(valueofinputbox.length);
+      }
+      document.getElementById("thebox").value = chilongangry;
+      eighteen.classList.remove("greencolor");
+      eighteen.classList.add("redcolor");
+    }
+}
