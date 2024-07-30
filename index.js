@@ -266,6 +266,7 @@ function verify() {
             fiften.classList.add("greencolor");
             fiften.classList.remove("redcolor");
             if (CurrentCount == 15) {
+                clickbtn = false;
                 CurrentCount++;
             }
         } else {
@@ -277,7 +278,6 @@ function verify() {
     sixten = document.getElementById('16');
     if (CurrentCount == 16) {
         sixten.classList.add("redcolor");
-        clickbtn = false;
         if (clickbtn) {
             CurrentCount++;
             sixten.classList.add("greencolor");
