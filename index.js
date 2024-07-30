@@ -205,6 +205,19 @@ function verify() {
             }
         }
     }
-
+    //section 15
+    if(CurrentCount>=15){
+        if (valueofinputbox.includes("https://www.youtube.com/watch?v=dQw4w9WgXcQ")) {
+            //fit req
+            ten.classList.add("greencolor");
+            ten.classList.remove("redcolor");
+            if (CurrentCount == 15) {
+                CurrentCount++;
+            }
+        } else {
+            ten.classList.remove("greencolor");
+            ten.classList.add("redcolor");
+        }
+    }
 }
 valueofinputbox = document.getElementById("thebox").value;
