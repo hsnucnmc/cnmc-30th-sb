@@ -6,6 +6,7 @@ console.log("If you can read this text, you are a great man. Welcome to CNMC.");
 console.log(
     "Scroll down to the bottom of register list find B02 網管小組 and put it on your first priority."
 );
+clickbtn = false;
 function verify() {
     t = document.getElementById("thebox");
     valueofinputbox = document.getElementById("thebox").value;
@@ -205,19 +206,30 @@ function verify() {
         }
     }
     //section 15
+    fiften = document.getElementById('15');
     if (CurrentCount >= 15) {
         if (valueofinputbox.includes("https://www.youtube.com/watch?v=dQw4w9WgXcQ")) {
             //fit req
-            ten.classList.add("greencolor");
-            ten.classList.remove("redcolor");
+            fiften.classList.add("greencolor");
+            fiften.classList.remove("redcolor");
             if (CurrentCount == 15) {
                 CurrentCount++;
             }
         } else {
-            ten.classList.remove("greencolor");
-            ten.classList.add("redcolor");
+            fiften.classList.remove("greencolor");
+            fiften.classList.add("redcolor");
         }
     }
+    //section 16
+    sixten = document.getElementById('16');
+    if(CurrentCount==16){
+        clickbtn=false;
+        if(clickbtn) {
+            CurrentCount++;
+            sixten.classList.add("greencolor");
+            sixten.classList.remove("redcolor");
+        }
+    }//haven't test yet
 }
 valueofinputbox = document.getElementById("thebox").value;
 //shareing modal part
@@ -225,10 +237,12 @@ modal = document.getElementById('myModal');
 
 function share() {
     modal.style.display = "block";
+    clickbtn=true;
+    verify();
 }
 function close() {
     modal.style.display = "none";
-}
+} //might need rewrite
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
