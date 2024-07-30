@@ -9,4 +9,7 @@ the string must contain the last class number in your year
 the string must contain the first name of our principle
 the string must contain the serial number of our club
 the string must contain the time required to travel from the south building to music classroom
-there will be a bottom if you press it will add the song of hsnu in the password. Every ten seconds, one word will disappear. Keep at least one word to stay alive.
+<!-- there will be a bottom if you press it will add the song of hsnu in the password. Every ten seconds, one word will disappear. Keep at least one word to stay alive. -->
+the string must contain the emoji on the club office (🚺)
+your password have been eaten by 啟龍🤓
+your password must contian the orginal rickroll url from youtube
