@@ -182,6 +182,7 @@ function verify() {
     if (CurrentCount >= 11) {
         flag = false;
         thlistofpossibleans = valueofinputbox.match(/(0?[0-9]|[1-5][0-9])mins/g);
+        if(thlistofpossibleans!=null){
         for (i = 0; i < thlistofpossibleans.length; i++) {
             if (thlistofpossibleans[i].length == 6) {
                 number1 = thlistofpossibleans[i][0];
@@ -202,6 +203,6 @@ function verify() {
         } else {
             eleven.classList.remove("greencolor");
             eleven.classList.add("redcolor");
-        }}
+        }}}
 }
 valueofinputbox = document.getElementById("thebox").value;
