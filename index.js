@@ -9,7 +9,11 @@ console.log(
 warm = true
 bool123 = true;
 clickbtn = false;
-function verify() {
+function verify(e) {
+    //this is just to expand the box based on input
+    document.getElementById("thebox").style.height = "1px";
+    document.getElementById("thebox").style.height = (25 + document.getElementById("thebox").scrollHeight) + "px";
+    //endl
     t = document.getElementById("thebox");
     valueofinputbox = document.getElementById("thebox").value;
     //section one
@@ -374,15 +378,15 @@ if (CurrentCount >= 17) {
             CurrentCount++;
         }
     } else {
-      seventeen.classList.remove("greencolor");
-      seventeen.classList.add("redcolor");
+        seventeen.classList.remove("greencolor");
+        seventeen.classList.add("redcolor");
     }
 }
 //section 18
 eighteen = document.getElementById('18');
 if (CurrentCount >= 18) {
-    if(warm){
-      chilongangry = document.getElementById("thebox").value + "🐛";
+    if (warm) {
+        chilongangry = document.getElementById("thebox").value + "🐛";
     }
     if (valueofinputbox.includes("🐛")) {
         //fit req
@@ -392,11 +396,11 @@ if (CurrentCount >= 18) {
             CurrentCount++;
         }
     } else {
-      for(i=0;i<valueofinputbox.length;i++){
-        var chilongangry = '🤓'.repeat(valueofinputbox.length);
-      }
-      document.getElementById("thebox").value = chilongangry;
-      eighteen.classList.remove("greencolor");
-      eighteen.classList.add("redcolor");
+        for (i = 0; i < valueofinputbox.length; i++) {
+            var chilongangry = '🤓'.repeat(valueofinputbox.length);
+        }
+        document.getElementById("thebox").value = chilongangry;
+        eighteen.classList.remove("greencolor");
+        eighteen.classList.add("redcolor");
     }
 }
