@@ -205,7 +205,7 @@ function verify() {
         }
     }
     //section 15
-    if(CurrentCount>=15){
+    if (CurrentCount >= 15) {
         if (valueofinputbox.includes("https://www.youtube.com/watch?v=dQw4w9WgXcQ")) {
             //fit req
             ten.classList.add("greencolor");
@@ -220,3 +220,24 @@ function verify() {
     }
 }
 valueofinputbox = document.getElementById("thebox").value;
+//shareing modal part
+modal = document.getElementById('myModal');
+
+function share() {
+    modal.style.display = "block";
+}
+function close() {
+    modal.style.display = "none";
+}
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+document.body.addEventListener('keydown', function (e) {
+    if (e.key == "Escape") {
+        if (modal.style.display == "block") {
+            modal.style.display = "none";
+        }
+    }
+});
