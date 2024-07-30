@@ -15,3 +15,11 @@ your password have been eaten by 啟龍🤓
 your password must contian the orginal rickroll url from youtube
 share this to your friend
 113年會考數學非選二第一小題的答案 (30)
+worm prevent dieing
+background color code of hsnu logo (three digits version and six digits version are both allowed)#660000 or #600
+
+
+
+
+boom ha
+retype it

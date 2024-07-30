@@ -9,7 +9,12 @@ console.log(
 warm = true;
 bool123 = true;
 clickbtn = false;
-function verify() {
+function verify(e) {
+  //this is just to expand the box based on input
+  document.getElementById("thebox").style.height = "1px";
+  document.getElementById("thebox").style.height =
+    25 + document.getElementById("thebox").scrollHeight + "px";
+  //endl
   t = document.getElementById("thebox");
   valueofinputbox = document.getElementById("thebox").value;
   //section one
@@ -36,9 +41,6 @@ function verify() {
       if (CurrentCount == 2) {
         CurrentCount++;
       }
-    } else {
-      two.classList.add("redcolor");
-      two.classList.remove("greencolor");
     }
   }
   //section 3
@@ -406,7 +408,7 @@ document.body.addEventListener("keydown", function (e) {
 });
 
 setInterval(function warmeat() {
-  console.log("exec")
+  console.log("exec");
   warmlocation = 0;
   let valueofinputbox = document.getElementById("thebox").value;
   if (valueofinputbox.length != 0) {

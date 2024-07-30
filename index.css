@@ -12,11 +12,12 @@ body {
 }
 
 #thebox {
-    height: 100px;
+    min-height: 35px;
     width: 400px;
     font-size: 25px;
     margin-left: 10px;
     margin-right: 10px;
+    overflow:hidden
 }
 
 textarea {
