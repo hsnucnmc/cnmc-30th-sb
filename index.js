@@ -219,23 +219,4 @@ function verify() {
         }
     }
 }
-//section 9
-nine = document.getElementById("9");
-if (CurrentCount >= 9) {
-    if (
-        valueofinputbox.includes("王") ||
-        valueofinputbox.includes("Wang") ||
-        valueofinputbox.includes("wang")
-    ) {
-        //fit req
-        nine.classList.add("greencolor");
-        nine.classList.remove("redcolor");
-        if (CurrentCount == 9) {
-            CurrentCount++;
-        }
-    } else {
-        nine.classList.remove("greencolor");
-        nine.classList.add("redcolor");
-    }
-}
 valueofinputbox = document.getElementById("thebox").value;
