@@ -19,7 +19,7 @@
 
         #thebox {
             height: 100px;
-            width: 375px;
+            width: 400px;
             font-size: 25px;
             margin-left: 10px;
             margin-right: 10px;
@@ -33,17 +33,20 @@
             background-color: grey;
             padding: 10px;
             border-radius: 10px;
+            width: 380px;
             display: none;
         }
 
         .redcolor {
             background-color: #D87968;
             display: inline-block;
+            order:2;
         }
 
         .greencolor {
             background-color: rgb(210, 243, 160);
             display: inline-block;
+            order:1;
         }
         .firstblock{
             display: inline-block;
@@ -54,8 +57,9 @@
 
         .cardlist {
             display: flex;
-            flex-direction: column;
+            flex-direction: column-reverse;
             align-items: center;
+
         }
 
         .card {
