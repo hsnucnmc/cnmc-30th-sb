@@ -195,15 +195,16 @@ function verify() {
                     flag = true;
                 }
             }
-            if (flag) {
-                eleven.classList.add("greencolor");
-                eleven.classList.remove("redcolor");
-                CurrentCount++;
-            } else {
-                eleven.classList.remove("greencolor");
-                eleven.classList.add("redcolor");
-            }
         }
+        if (flag) {
+            eleven.classList.add("greencolor");
+            eleven.classList.remove("redcolor");
+            CurrentCount++;
+        } else {
+            eleven.classList.remove("greencolor");
+            eleven.classList.add("redcolor");
+        }
+
     }
     //section 15
     fiften = document.getElementById('15');
@@ -222,9 +223,9 @@ function verify() {
     }
     //section 16
     sixten = document.getElementById('16');
-    if(CurrentCount==16){
-        clickbtn=false;
-        if(clickbtn) {
+    if (CurrentCount == 16) {
+        clickbtn = false;
+        if (clickbtn) {
             CurrentCount++;
             sixten.classList.add("greencolor");
             sixten.classList.remove("redcolor");
@@ -237,7 +238,7 @@ modal = document.getElementById('myModal');
 
 function share() {
     modal.style.display = "block";
-    clickbtn=true;
+    clickbtn = true;
     verify();
 }
 function close() {
