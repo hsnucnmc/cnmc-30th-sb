@@ -276,7 +276,7 @@ function verify() {
     //section 16
     sixten = document.getElementById('16');
     if (CurrentCount == 16) {
-        sixten.classList.add("redcolors");
+        sixten.classList.add("redcolor");
         clickbtn = false;
         if (clickbtn) {
             CurrentCount++;
