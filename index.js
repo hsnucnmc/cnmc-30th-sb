@@ -9,24 +9,30 @@ console.log(
 function verify() {
   t = document.getElementById("thebox");
   valueofinputbox = document.getElementById("thebox").value;
+  //section one
   one = document.getElementById("1");
   if (valueofinputbox.length > 0) {
     //yes
     one.classList.add("greencolor");
     one.classList.remove("redcolor");
+    if (CurrentCount == 1) {
+      CurrentCount++;
+    }
   } else {
     one.classList.add("redcolor");
     one.classList.remove("greencolor");
   }
   //section 2
-  two = document.getElementById("2");
-  let specialChars = /[!@#$%^&*(),.?":{}|<>]/;
-  if (CurrentCount == 1) {
+  if (CurrentCount >= 2) {
+    two = document.getElementById("2");
+    let specialChars = /[!@#$%^&*(),.?":{}|<>]/;
     if (specialChars.test(valueofinputbox)) {
       //yes
       two.classList.add("greencolor");
       two.classList.remove("redcolor");
-      CurrentCount++;
+      if (CurrentCount == 2) {
+        CurrentCount++;
+      }
     } else {
       two.classList.add("redcolor");
       two.classList.remove("greencolor");
@@ -34,13 +40,14 @@ function verify() {
   }
   //section 3
   three = document.getElementById("3");
-
-  if (CurrentCount == 2) {
-    if (/\d/.test(valueofinputbox) && CurrentCount == 2) {
+  if (CurrentCount >= 3) {
+    if (/\d/.test(valueofinputbox)) {
       //fit req
       three.classList.add("greencolor");
       three.classList.remove("redcolor");
-      CurrentCount++;
+      if (CurrentCount == 3) {
+        CurrentCount++;
+      }
     } else {
       three.classList.remove("greencolor");
       three.classList.add("redcolor");
@@ -48,78 +55,106 @@ function verify() {
   }
   //section 4
   four = document.getElementById("4");
-  let BigChars = /[ABCDEFGHIJKLMNOPQRSTUVWYXZ]/;
-  if (BigChars.test(valueofinputbox)) {
-    //fit req
-    four.classList.add("greencolor");
-    four.classList.remove("redcolor");
-  } else {
-    four.classList.remove("greencolor");
-    four.classList.add("redcolor");
+  if (CurrentCount >= 4) {
+    let BigChars = /[ABCDEFGHIJKLMNOPQRSTUVWYXZ]/;
+    if (BigChars.test(valueofinputbox)) {
+      //fit req
+      four.classList.add("greencolor");
+      four.classList.remove("redcolor");
+      if (CurrentCount == 4) {
+        CurrentCount++;
+      }
+    } else {
+      four.classList.remove("greencolor");
+      four.classList.add("redcolor");
+    }
   }
   //section 5
   five = document.getElementById("5");
-  if (valueofinputbox.includes("cnmc")) {
-    //fit req
-    five.classList.add("greencolor");
-    five.classList.remove("redcolor");
-  } else {
-    five.classList.remove("greencolor");
-    five.classList.add("redcolor");
+  if (CurrentCount >= 5) {
+    if (valueofinputbox.includes("cnmc")) {
+      //fit req
+      five.classList.add("greencolor");
+      five.classList.remove("redcolor");
+      if (CurrentCount == 5) {
+        CurrentCount++;
+      }
+    } else {
+      five.classList.remove("greencolor");
+      five.classList.add("redcolor");
+    }
   }
   //section 6
   six = document.getElementById("6");
-  if (valueofinputbox.includes("west") || valueofinputbox.includes("West")) {
-    //fit req
-    six.classList.add("greencolor");
-    six.classList.remove("redcolor");
-  } else {
-    six.classList.remove("greencolor");
-    six.classList.add("redcolor");
+  if (CurrentCount >= 6) {
+    if (valueofinputbox.includes("west") || valueofinputbox.includes("West")) {
+      //fit req
+      six.classList.add("greencolor");
+      six.classList.remove("redcolor");
+      if (CurrentCount == 6) {
+        CurrentCount++;
+      }
+    } else {
+      six.classList.remove("greencolor");
+      six.classList.add("redcolor");
+    }
   }
   //section 7
   seven = document.getElementById("7");
-  eeee = valueofinputbox.match(/\d+/g);
-  num = 0;
-  eeee = valueofinputbox.match(/\d+/g);
-  num = 0;
-
-  if (eeee != null) {
-    for (i = 0; i < eeee.length; i++) {
-      num += parseInt(eeee[i], 10); // 將字串轉換為整數並加總到 num
+  if (CurrentCount >= 7) {
+    eeee = valueofinputbox.match(/\d+/g);
+    num = 0;
+    if (eeee != null) {
+      for (i = 0; i < eeee.length; i++) {
+        num += parseInt(eeee[i], 10); // 將字串轉換為整數並加總到 num
+      }
+    }
+    if (num == 1947) {
+      //fit req
+      seven.classList.add("greencolor");
+      seven.classList.remove("redcolor");
+      if (CurrentCount == 7) {
+        CurrentCount++;
+      }
+    } else {
+      seven.classList.remove("greencolor");
+      seven.classList.add("redcolor");
     }
   }
-  if (num == 1947) {
-    //fit req
-    seven.classList.add("greencolor");
-    seven.classList.remove("redcolor");
-  } else {
-    seven.classList.remove("greencolor");
-    seven.classList.add("redcolor");
-  }
+
   //section 8
   eight = document.getElementById("8");
-  if (valueofinputbox.includes("1657")) {
-    //fit req
-    eight.classList.add("greencolor");
-    eight.classList.remove("redcolor");
-  } else {
-    eight.classList.remove("greencolor");
-    eight.classList.add("redcolor");
+  if (CurrentCount >= 8) {
+    if (valueofinputbox.includes("1657")) {
+      //fit req
+      eight.classList.add("greencolor");
+      eight.classList.remove("redcolor");
+      if (CurrentCount == 8) {
+        CurrentCount++;
+      }
+    } else {
+      eight.classList.remove("greencolor");
+      eight.classList.add("redcolor");
+    }
   }
   //section 9
   nine = document.getElementById("9");
-  if (
-    valueofinputbox.includes("王") ||
-    valueofinputbox.includes("Wang") ||
-    valueofinputbox.includes("wang")
-  ) {
-    //fit req
-    nine.classList.add("greencolor");
-    nine.classList.remove("redcolor");
-  } else {
-    nine.classList.remove("greencolor");
-    nine.classList.add("redcolor");
+  if (CurrentCount >= 9) {
+    if (
+      valueofinputbox.includes("王") ||
+      valueofinputbox.includes("Wang") ||
+      valueofinputbox.includes("wang")
+    ) {
+      //fit req
+      nine.classList.add("greencolor");
+      nine.classList.remove("redcolor");
+      if (CurrentCount == 9) {
+        CurrentCount++;
+      }
+    } else {
+      nine.classList.remove("greencolor");
+      nine.classList.add("redcolor");
+    }
   }
 
   //section 10
