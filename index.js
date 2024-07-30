@@ -163,7 +163,7 @@ function verify() {
   //section 11
   //untest
   eleven = document.getElementById("11");
-  if (CurrentCount == 10) {
+  if (CurrentCount >= 10) {
     flag = false;
     thlistofpossibleans = valueofinputbox.match(/(0?[0-9]|[1-5][0-9])mins/g);
     for (i = 0; i < thlistofpossibleans.length(); i++) {

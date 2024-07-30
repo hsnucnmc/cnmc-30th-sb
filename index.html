@@ -4,8 +4,11 @@
     <title>hi</title>
 
     <style>
+        .main{
+            margin-top: 10em;
+        }
         .title {
-            font-size: 100px;
+            font-size: 5em;
             font-family: 'Courier New', Courier, monospace;
             text-align: center
         }
@@ -67,12 +70,17 @@
             margin: auto;
             height: 500px;
         }
+        footer{
+            margin-top: 3em;
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
+    <div class="main">
     <div class="title">The password game</div>
-    <div class="theboxlist"><textarea id="thebox" onkeyup="verify()">hi there</textarea></div>
+    <div class="theboxlist"><textarea id="thebox" onkeyup="verify()" placeholder="Type here to start"></textarea></div>
 
     <script src="index.js"></script>
     <div class="cardlist">
@@ -134,4 +142,6 @@
         </div>
         
     </div>
+</div>
+<footer>HSNU CNMC &copy;2024 All Right Reserved</footer>
 </body>
