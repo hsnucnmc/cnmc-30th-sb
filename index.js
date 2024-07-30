@@ -159,6 +159,19 @@ function verify() {
 
   //section 10
   ten = document.getElementById("10");
+  if (CurrentCount >= 10) {
+    if (valueofinputbox.includes("B02") || valueofinputbox.includes("b02")) {
+      //fit req
+      ten.classList.add("greencolor");
+      ten.classList.remove("redcolor");
+      if (CurrentCount == 10) {
+        CurrentCount++;
+      }
+    } else {
+      ten.classList.remove("greencolor");
+      ten.classList.add("redcolor");
+    }
+  }
 
   //section 11
   //untest
@@ -166,12 +179,14 @@ function verify() {
   if (CurrentCount >= 11) {
     flag = false;
     thlistofpossibleans = valueofinputbox.match(/(0?[0-9]|[1-5][0-9])mins/g);
-    for (i = 0; i < thlistofpossibleans.length(); i++) {
-      number1 = thlistofpossibleans[i][0];
-      number2 = thlistofpossibleans[i][1];
-      finalnum = Number(number1) * 10 + Number(number2);
-      if (5 <= finalnum && finalnum <= 10) {
-        flag = true;
+    if (thlistofpossibleans != null) {
+      for (i = 0; i < thlistofpossibleans.length; i++) {
+        number1 = thlistofpossibleans[i][0];
+        number2 = thlistofpossibleans[i][1];
+        finalnum = Number(number1) * 10 + Number(number2);
+        if (5 <= finalnum && finalnum <= 10) {
+          flag = true;
+        }
       }
     }
     if (flag) {
