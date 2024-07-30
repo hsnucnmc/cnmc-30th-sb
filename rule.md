@@ -14,3 +14,4 @@ the string must contain the emoji on the club office (🚺)
 your password have been eaten by 啟龍🤓
 your password must contian the orginal rickroll url from youtube
 share this to your friend
+113年會考數學非選二第一小題的答案 (30)
