@@ -327,7 +327,22 @@ function verify(e) {
       eighteen.classList.remove("greencolor");
       eighteen.classList.add("redcolor");
     }
-  }
+}
+//section 19
+nineten = document.getElementById("19");
+if (CurrentCount >= 19) {
+    if (valueofinputbox.includes("#600") || valueofinputbox.includes("#660000")) {
+        //fit req
+        nineten.classList.add("greencolor");
+        nineten.classList.remove("redcolor");
+        if (CurrentCount == 19) {
+            CurrentCount++;
+        }
+    } else {
+        nineten.classList.remove("greencolor");
+        nineten.classList.add("redcolor");
+    }
+}
 }
 function getEmojiCodePoints(emoji) {
   const codePoints = [];
@@ -424,3 +439,40 @@ setInterval(function warmeat() {
   }
   verify();
 }, 1500);
+
+//wutcworking
+function analyzeMETAR(metar) {
+    // Extract weather phenomena and sky conditions from METAR
+    const weatherPhenomena = metar.match(/(.*?)\s+(\d{4})(Z|UTC)/);
+    const skyCondition = metar.match(/\s(SKC|CLR|FEW|SCT|BKN|OVC)\d{3}/);
+
+    // Check for specific weather phenomena
+    if(weatherPhenomena!=null) {const isRainy = /RA/.test(weatherPhenomena[1]);}
+
+    // Check for sunny condition (clear skies)
+    const isSunny = (weatherPhenomena!=null&&!isRainy) && (skyCondition && (skyCondition[1] === 'SKC' || skyCondition[1] === 'CLR'));
+
+    // Check for cloudy condition (excluding rain)
+    const isCloudy = (weatherPhenomena!=null&&!isRainy) && (skyCondition && (skyCondition[1] === 'FEW' || skyCondition[1] === 'SCT' || skyCondition[1] === 'BKN' || skyCondition[1] === 'OVC'));
+
+    // Determine the weather condition based on the analysis
+    let weatherCondition;
+    if (isSunny) {
+        weatherCondition = "Sunny";
+    } else if (weatherPhenomena!=null&&isRainy) {
+        weatherCondition = "Rainy";
+    } else if (isCloudy) {
+        weatherCondition = "Cloudy (but not rainy)";
+    } else {
+        weatherCondition = "Other";
+    }
+
+    return weatherCondition;
+}
+
+// // Example METAR
+// const metar = "METAR EDDF 291250Z 25012KT 9999 SCT043 24/14 Q1015 NOSIG";
+
+// // Analyze the METAR
+// const result = analyzeMETAR(exampleMETAR);
+// console.log("Weather condition:", result); // Output: Cloudy (but not rainy)
