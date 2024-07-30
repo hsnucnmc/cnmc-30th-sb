@@ -160,7 +160,23 @@ function verify() {
     //section 10
     ten = document.getElementById("10");
 
-    //section 11
+    
+  //section 10
+  ten = document.getElementById("10");
+  if (CurrentCount >= 10) {
+    if (valueofinputbox.includes("B02") || valueofinputbox.includes("b02")) {
+      //fit req
+      ten.classList.add("greencolor");
+      ten.classList.remove("redcolor");
+      if (CurrentCount == 10) {
+        CurrentCount++;
+      }
+    } else {
+      ten.classList.remove("greencolor");
+      ten.classList.add("redcolor");
+    }
+  }
+//section 11
     //untest
     eleven = document.getElementById("11");
     if (CurrentCount >= 11) {
@@ -186,7 +202,6 @@ function verify() {
         } else {
             eleven.classList.remove("greencolor");
             eleven.classList.add("redcolor");
-        }
-    }
+        }}
 }
 valueofinputbox = document.getElementById("thebox").value;
