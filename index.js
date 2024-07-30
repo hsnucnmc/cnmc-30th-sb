@@ -7,6 +7,7 @@ console.log(
   "Scroll down to the bottom of register list find B02 網管小組 and put it on your first priority."
 );
 bool123 = true;
+clickbtn = false;
 function verify() {
   t = document.getElementById("thebox");
   valueofinputbox = document.getElementById("thebox").value;
@@ -159,9 +160,6 @@ function verify() {
   }
   //section 10
   ten = document.getElementById("10");
-
-  //section 10
-  ten = document.getElementById("10");
   if (CurrentCount >= 10) {
     if (valueofinputbox.includes("B02") || valueofinputbox.includes("b02")) {
       //fit req
@@ -260,6 +258,31 @@ function verify() {
       CurrentCount++;
     }
   }
+//section 15
+fiften = document.getElementById('15');
+if (CurrentCount >= 15) {
+    if (valueofinputbox.includes("https://www.youtube.com/watch?v=dQw4w9WgXcQ")) {
+        //fit req
+        fiften.classList.add("greencolor");
+        fiften.classList.remove("redcolor");
+        if (CurrentCount == 15) {
+            CurrentCount++;
+        }
+    } else {
+        fiften.classList.remove("greencolor");
+        fiften.classList.add("redcolor");
+    }
+}
+//section 16
+sixten = document.getElementById('16');
+if (CurrentCount == 16) {
+    clickbtn = false;
+    if (clickbtn) {
+        CurrentCount++;
+        sixten.classList.add("greencolor");
+        sixten.classList.remove("redcolor");
+    }
+}//haven't test yet
 }
 function getEmojiCodePoints(emoji) {
   const codePoints = [];
@@ -311,3 +334,26 @@ setInterval(function chilong() {
   }
   verify();
 }, 1500);
+//shareing modal part
+modal = document.getElementById('myModal');
+
+function share() {
+    modal.style.display = "block";
+    clickbtn = true;
+    verify();
+}
+function close() {
+    modal.style.display = "none";
+} //might need rewrite
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+document.body.addEventListener('keydown', function (e) {
+    if (e.key == "Escape") {
+        if (modal.style.display == "block") {
+            modal.style.display = "none";
+        }
+    }
+});

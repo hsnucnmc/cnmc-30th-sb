@@ -13,3 +13,4 @@ the string must contain the time required to travel from the south building to m
 the string must contain the emoji on the club office (🚺)
 your password have been eaten by 啟龍🤓
 your password must contian the orginal rickroll url from youtube
+share this to your friend

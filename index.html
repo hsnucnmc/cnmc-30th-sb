@@ -3,165 +3,104 @@
 <head>
     <title>hi</title>
 
-    <style>
-        .main{
-            margin-top: 10em;
-        }
-        .title {
-            font-size: 5em;
-            font-family: 'Courier New', Courier, monospace;
-            text-align: center
-        }
-
-        body {
-            background-color: antiquewhite;
-        }
-
-        #thebox {
-            height: 100px;
-            width: 400px;
-            font-size: 25px;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
-        textarea {
-            resize: none;
-        }
-
-        .card {
-            background-color: grey;
-            padding: 10px;
-            border-radius: 10px;
-            width: 380px;
-            display: none;
-        }
-
-        .redcolor {
-            background-color: #D87968;
-            display: inline-block;
-            order:2;
-        }
-
-        .greencolor {
-            background-color: rgb(210, 243, 160);
-            display: inline-block;
-            order:1;
-        }
-        .firstblock{
-            display: inline-block;
-        }
-        .numberlist {
-            border-bottom: black 1px;
-        }
-
-        .cardlist {
-            display: flex;
-            flex-direction: column-reverse;
-            align-items: center;
-
-        }
-
-        .card {
-            margin-top: 5px;
-        }
-
-        .theboxlist {
-            display: flex;
-            align-items: center;
-            justify-content: center
-            
-        }
-        img{
-            display: block;
-            margin: auto;
-            height: 500px;
-        }
-        footer{
-            margin-top: 3em;
-            text-align: center;
-        }
-        .styled:hover{
-            background-color: aquamarine;
-        }
-    </style>
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
-    <div class="main">
-    <div class="title">The password game</div>
-    <div class="theboxlist"><input class="styled" value="Mystery button" type="button" style="background-color: antiquewhite; border: none; color: antiquewhite; border-radius: 10px;" /><textarea id="thebox" onkeyup="verify()" placeholder="Type here to start"></textarea><input class="styled" type="button" value="Mystery button" style="border-radius: 20px; height: 50px;" /></div>
-    
+    <div class="sharebtn" onclick="share();">Share it</div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
 
-    <script src="index.js"></script>
-    <div class="cardlist">
-        <div class="card firstblock" id="1">
-            <div class="numberlist">Rule 1</div>
-            Your password must contain at least one character
-            <br>
-            沒有內容的密碼怎麼可能過呢?
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close" onclick="close();">&times;</span>
+            <p>What a great game:)</p>
+            <p>Why dont you share it with the link below:</p>
+            <textarea rows="1" cols="19">https://cnmc.tw/pwd</textarea>
         </div>
-        <div class="card " id="2">
-            <div class="numberlist">Rule 2</div>
-            Your password must contain at least one special char
-            <br>
-            密碼必須包含一個特殊字元
-        </div>
-        <div class="card " id="3">
-            <div class="numberlist">Rule 3</div>
-            Your password must contain at least one number
-            <br>
-            密碼必須包含一個數字
-        </div>
-        <div class="card " id="4">
-            <div class="numberlist">Rule 4</div>
-            Your password must contain at least one UPPER case char
-            <br>
-            大寫給我大寫
-        </div>
-        <div class="card " id="5">
-            <div class="numberlist">Rule 5</div>
-            Your password must contain cnmc
-            <br>
-            密碼必須包含網管小組的簡稱
-        </div>
-        <div class="card " id="6">
-            <div class="numberlist">Rule 6</div>
-            Your password must contain the azimuth of the given building
-            <br>
-            密碼必須包含建築的方位
-            <br>
-            <img src="img/unnamed.jpg" alt="img" >
-        </div>
-        <div class="card " id="7">
-            <div class="numberlist">Rule 7</div>
-            the sum of numbers in string must be the established year of hsnu
-            <br>
-            字串中的數字總和必須是hsnu的成立年份
-        </div>
-        <div class="card " id="8">
-            <div class="numberlist">Rule 8</div>
-            Your password must contain the last class number in your year
-            <br>
-            密碼必須包含最後一個班的班號
-        </div>
-        <div class="card " id="9">
-            <div class="numberlist">Rule 9</div>
-            Your password must contain the first name of our principle
-            <br>
-            密碼必須包含校長的姓氏
-        </div>
-        <div class="card " id="10">
-            <div class="numberlist">Rule 10</div>
-            Your password must contain the serial number of our club
-            <br>
-            密碼必須包含網管小組的序號
-        </div>
-        <div class="card " id="11">
-            <div class="numberlist">Rule 11</div>
-            Your password must contain the time required to travel from the south building to music classroom
-            <br>
-            您的密碼必須包含從南樓到音樂教室所需的時間
+
+    </div>
+
+    <!-- position error -->
+    <div class="main">
+
+        <div class="title">The password game</div>
+        <div class="theboxlist"><input class="styled" value="Mystery button" type="button"
+                style="background-color: antiquewhite; border: none; color: antiquewhite; border-radius: 10px;" /><textarea
+                id="thebox" onkeyup="verify()" placeholder="Type here to start"></textarea><input class="styled"
+                type="button" value="Mystery button" style="border-radius: 20px; height: 50px;" /></div>
+
+
+        <script src="index.js"></script>
+        <div class="cardlist">
+            <div class="card firstblock" id="1">
+                <div class="numberlist">Rule 1</div>
+                Your password must contain at least one character
+                <br>
+                沒有內容的密碼怎麼可能過呢?
+            </div>
+            <div class="card " id="2">
+                <div class="numberlist">Rule 2</div>
+                Your password must contain at least one special char
+                <br>
+                密碼必須包含一個特殊字元
+            </div>
+            <div class="card " id="3">
+                <div class="numberlist">Rule 3</div>
+                Your password must contain at least one number
+                <br>
+                密碼必須包含一個數字
+            </div>
+            <div class="card " id="4">
+                <div class="numberlist">Rule 4</div>
+                Your password must contain at least one UPPER case char
+                <br>
+                大寫給我大寫
+            </div>
+            <div class="card " id="5">
+                <div class="numberlist">Rule 5</div>
+                Your password must contain cnmc
+                <br>
+                密碼必須包含網管小組的簡稱
+            </div>
+            <div class="card " id="6">
+                <div class="numberlist">Rule 6</div>
+                Your password must contain the azimuth of the given building
+                <br>
+                密碼必須包含建築的方位
+                <br>
+                <img src="img/unnamed.jpg" alt="img">
+            </div>
+            <div class="card " id="7">
+                <div class="numberlist">Rule 7</div>
+                the sum of numbers in string must be the established year of hsnu
+                <br>
+                字串中的數字總和必須是hsnu的成立年份
+            </div>
+            <div class="card " id="8">
+                <div class="numberlist">Rule 8</div>
+                Your password must contain the last class number in your year
+                <br>
+                密碼必須包含最後一個班的班號
+            </div>
+            <div class="card " id="9">
+                <div class="numberlist">Rule 9</div>
+                Your password must contain the first name of our principle
+                <br>
+                密碼必須包含校長的姓氏
+            </div>
+            <div class="card " id="10">
+                <div class="numberlist">Rule 10</div>
+                Your password must contain the serial number of our club
+                <br>
+                密碼必須包含網管小組的序號
+            </div>
+            <div class="card " id="11">
+                <div class="numberlist">Rule 11</div>
+                Your password must contain the time required to travel from the south building to music classroom
+                <br>
+                您的密碼必須包含從南樓到音樂教室所需的時間
+            </div>
         </div>
         <div class="card " id="12">
             <div class="numberlist">Rule 12</div>
@@ -182,6 +121,5 @@
             您的密碼必須包含
         </div>
     </div>
-</div>
-<footer>HSNU CNMC &copy;2024 All Right Reserved</footer>
+    <footer>HSNU CNMC &copy;2024 All Right Reserved</footer>
 </body>
