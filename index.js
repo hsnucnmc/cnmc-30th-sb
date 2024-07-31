@@ -10,7 +10,7 @@ warm = true;
 bool123 = true;
 clickbtn = false;
 weather = '';
-
+fake=false;
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }// public function
@@ -387,7 +387,7 @@ function verify(e) {
       sixten.classList.add("greencolor");
       sixten.classList.remove("redcolor");
     }
-  } //haven't test yet
+  } 
   //section 17
   seventeen = document.getElementById("17");
   if (CurrentCount >= 17) {
@@ -511,7 +511,9 @@ function verify(e) {
     }
   }
   //section 24
+  twofour= document.getElementById('24');
   if (CurrentCount == 24) {
+    twofour.classList.add("redcolor");
     //replace words with emoji bomb;
     let arr = valueofinputbox.split('');
     const len = arr.length;
@@ -545,16 +547,25 @@ function verify(e) {
       arr.push('🐛');//temp prevent explode
       document.getElementById("thebox").value = arr.join('');
     });
+    twofour.classList.remove("redcolor");
+    twofour.classList.add("greencolor");
     CurrentCount++;
   }
   //first replace some words with emoji bomb and then shake the textarea, then change the text to _ and some random text
   //section 25
   //finally
+  twofive = document.getElementById('25');
   if (CurrentCount == 25) {
+    twofive.classList.add("redcolor");
     if (totalflag == true) {
+      if(fake==false){
+        fake=true;
+      }else{
+      twofive.classList.add("greencolor");
+      twofive.classList.remove("redcolor");}
       console.log("Passed you win");
     }
-  }
+  } 
 
 }
 function getEmojiCodePoints(emoji) {
