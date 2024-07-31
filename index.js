@@ -386,7 +386,14 @@ function verify(e) {
   //section 17
   seventeen = document.getElementById("17");
   if (CurrentCount >= 17) {
-    if (true) {
+    numberlist=valueofinputbox.match(/\d+/g);
+    flag = false;
+    if (numberlist != null) {
+      for (i = 0; i < numberlist.length; i++) {
+        if(numberlist[i]==30) flag=true;
+      }
+    }
+    if (flag) {
       //fit req
       // TODO
       seventeen.classList.add("greencolor");
