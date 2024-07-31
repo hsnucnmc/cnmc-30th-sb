@@ -9,6 +9,97 @@ console.log(
 warm = true;
 bool123 = true;
 clickbtn = false;
+weather='';
+document.addEventListener('DOMContentLoaded', (event) => {
+  const apiUrl = 'https://api.open-meteo.com/v1/forecast?latitude=25.0269&longitude=121.5367&hourly=temperature_2m,relative_humidity_2m,dew_point_2m,precipitation,rain,showers,weather_code,wind_speed_10m&timezone=Asia%2FSingapore&forecast_days=1';
+
+  // WMO weather codes interpretation
+  const weatherDescriptions = {
+      0: "Clear sky",
+      1: "Mainly clear",
+      2: "Partly cloudy",
+      3: "Overcast",
+      45: "Fog",
+      48: "Depositing rime fog",
+      51: "Light drizzle",
+      53: "Moderate drizzle",
+      55: "Dense drizzle",
+      56: "Light freezing drizzle",
+      57: "Dense freezing drizzle",
+      61: "Slight rain",
+      63: "Moderate rain",
+      65: "Heavy rain",
+      66: "Light freezing rain",
+      67: "Heavy freezing rain",
+      71: "Slight snow fall",
+      73: "Moderate snow fall",
+      75: "Heavy snow fall",
+      80: "Slight rain showers",
+      81: "Moderate rain showers",
+      82: "Violent rain showers",
+      85: "Slight snow showers",
+      86: "Heavy snow showers",
+      95: "Thunderstorm",
+      96: "Thunderstorm with slight hail",
+      99: "Thunderstorm with heavy hail"
+  };
+
+  async function fetchWeather() {
+      try {
+          const response = await fetch(apiUrl);
+          const data = await response.json();
+
+          const times = data.hourly.time;
+          const weatherCodes = data.hourly.weather_code;
+          const precipitations = data.hourly.precipitation;
+          const windSpeeds = data.hourly.wind_speed_10m;
+
+          // Get current time and convert to ISO string format
+          const currentTime = new Date().toISOString().slice(0, 16);
+
+          // Find the closest time entry in the data
+          let closestTimeIndex = 0;
+          let smallestDiff = Math.abs(new Date(times[0]) - new Date(currentTime));
+
+          for (let i = 1; i < times.length; i++) {
+              const time = times[i];
+              const diff = Math.abs(new Date(time) - new Date(currentTime));
+              if (diff < smallestDiff) {
+                  smallestDiff = diff;
+                  closestTimeIndex = i;
+              }
+          }
+
+          // Get weather data for the closest time
+          const closestWeatherCode = weatherCodes[closestTimeIndex];
+          const closestPrecipitation = precipitations[closestTimeIndex];
+          const closestWindSpeed = windSpeeds[closestTimeIndex];
+
+          // Determine weather description
+          let weatherDescription = weatherDescriptions[closestWeatherCode] || "Unknown";
+
+          if (closestPrecipitation > 0) {
+              weatherDescription = "Rainy";
+          } else if (closestWindSpeed > 15) {
+              weatherDescription = "Windy";
+          } else if (closestWeatherCode >= 95 && closestWeatherCode <= 99) {
+              weatherDescription = "Lightning";
+          } else if (closestWeatherCode === 0 || closestWeatherCode === 1) {
+              weatherDescription = "Sunny";
+          } else if (closestWeatherCode >= 2 && closestWeatherCode <= 3) {
+              weatherDescription = "Cloudy";
+          }
+
+          // Output the resulting weather description
+          console.log(weatherDescription);
+          weather=weatherDescription.toLowerCase();
+      } catch (error) {
+          console.error('Error fetching weather data:', error);
+      }
+  }
+
+  fetchWeather();
+});
 function verify(e) {
   //this is just to expand the box based on input
   document.getElementById("thebox").style.height = "1px";
@@ -297,6 +388,7 @@ function verify(e) {
   if (CurrentCount >= 17) {
     if (true) {
       //fit req
+      // TODO
       seventeen.classList.add("greencolor");
       seventeen.classList.remove("redcolor");
       if (CurrentCount == 17) {
@@ -334,7 +426,7 @@ function verify(e) {
   //section 19
   nineten = document.getElementById("19");
   if (CurrentCount >= 19) {
-    if (valueofinputbox.includes("#600") || valueofinputbox.includes("#660000")) {
+    if (valueofinputbox.includes("#fff") || valueofinputbox.includes("#ffffff")) {
       //fit req
       nineten.classList.add("greencolor");
       nineten.classList.remove("redcolor");
@@ -344,6 +436,20 @@ function verify(e) {
     } else {
       nineten.classList.remove("greencolor");
       nineten.classList.add("redcolor");
+    }
+  }
+  twozero = document.getElementById("20");
+  if (CurrentCount >= 20) {
+    if (valueofinputbox.toLowerCase().includes(weather)) {
+      //fit req
+      twozero.classList.add("greencolor");
+      twozero.classList.remove("redcolor");
+      if (CurrentCount == 20) {
+        CurrentCount++;
+      }
+    } else {
+      twozero.classList.remove("greencolor");
+      twozero.classList.add("redcolor");
     }
   }
 }
@@ -443,39 +549,3 @@ document.body.addEventListener("keydown", function (e) {
 //   verify();
 // }, 1500);
 
-//wutcworking
-function analyzeMETAR(metar) {
-  // Extract weather phenomena and sky conditions from METAR
-  const weatherPhenomena = metar.match(/(.*?)\s+(\d{4})(Z|UTC)/);
-  const skyCondition = metar.match(/\s(SKC|CLR|FEW|SCT|BKN|OVC)\d{3}/);
-
-  // Check for specific weather phenomena
-  if (weatherPhenomena != null) { const isRainy = /RA/.test(weatherPhenomena[1]); }
-
-  // Check for sunny condition (clear skies)
-  const isSunny = (weatherPhenomena != null && !isRainy) && (skyCondition && (skyCondition[1] === 'SKC' || skyCondition[1] === 'CLR'));
-
-  // Check for cloudy condition (excluding rain)
-  const isCloudy = (weatherPhenomena != null && !isRainy) && (skyCondition && (skyCondition[1] === 'FEW' || skyCondition[1] === 'SCT' || skyCondition[1] === 'BKN' || skyCondition[1] === 'OVC'));
-
-  // Determine the weather condition based on the analysis
-  let weatherCondition;
-  if (isSunny) {
-    weatherCondition = "Sunny";
-  } else if (weatherPhenomena != null && isRainy) {
-    weatherCondition = "Rainy";
-  } else if (isCloudy) {
-    weatherCondition = "Cloudy (but not rainy)";
-  } else {
-    weatherCondition = "Other";
-  }
-
-  return weatherCondition;
-}
-
-// // Example METAR
-// const metar = "METAR EDDF 291250Z 25012KT 9999 SCT043 24/14 Q1015 NOSIG";
-
-// // Analyze the METAR
-// const result = analyzeMETAR(exampleMETAR);
-// console.log("Weather condition:", result); // Output: Cloudy (but not rainy)
