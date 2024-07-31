@@ -9,98 +9,103 @@ console.log(
 warm = true;
 bool123 = true;
 clickbtn = false;
-weather='';
+weather = '';
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}// public function
 document.addEventListener('DOMContentLoaded', (event) => {
   const apiUrl = 'https://api.open-meteo.com/v1/forecast?latitude=25.0269&longitude=121.5367&hourly=temperature_2m,relative_humidity_2m,dew_point_2m,precipitation,rain,showers,weather_code,wind_speed_10m&timezone=Asia%2FSingapore&forecast_days=1';
 
   // WMO weather codes interpretation
   const weatherDescriptions = {
-      0: "Clear sky",
-      1: "Mainly clear",
-      2: "Partly cloudy",
-      3: "Overcast",
-      45: "Fog",
-      48: "Depositing rime fog",
-      51: "Light drizzle",
-      53: "Moderate drizzle",
-      55: "Dense drizzle",
-      56: "Light freezing drizzle",
-      57: "Dense freezing drizzle",
-      61: "Slight rain",
-      63: "Moderate rain",
-      65: "Heavy rain",
-      66: "Light freezing rain",
-      67: "Heavy freezing rain",
-      71: "Slight snow fall",
-      73: "Moderate snow fall",
-      75: "Heavy snow fall",
-      80: "Slight rain showers",
-      81: "Moderate rain showers",
-      82: "Violent rain showers",
-      85: "Slight snow showers",
-      86: "Heavy snow showers",
-      95: "Thunderstorm",
-      96: "Thunderstorm with slight hail",
-      99: "Thunderstorm with heavy hail"
+    0: "Clear sky",
+    1: "Mainly clear",
+    2: "Partly cloudy",
+    3: "Overcast",
+    45: "Fog",
+    48: "Depositing rime fog",
+    51: "Light drizzle",
+    53: "Moderate drizzle",
+    55: "Dense drizzle",
+    56: "Light freezing drizzle",
+    57: "Dense freezing drizzle",
+    61: "Slight rain",
+    63: "Moderate rain",
+    65: "Heavy rain",
+    66: "Light freezing rain",
+    67: "Heavy freezing rain",
+    71: "Slight snow fall",
+    73: "Moderate snow fall",
+    75: "Heavy snow fall",
+    80: "Slight rain showers",
+    81: "Moderate rain showers",
+    82: "Violent rain showers",
+    85: "Slight snow showers",
+    86: "Heavy snow showers",
+    95: "Thunderstorm",
+    96: "Thunderstorm with slight hail",
+    99: "Thunderstorm with heavy hail"
   };
 
   async function fetchWeather() {
-      try {
-          const response = await fetch(apiUrl);
-          const data = await response.json();
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
 
-          const times = data.hourly.time;
-          const weatherCodes = data.hourly.weather_code;
-          const precipitations = data.hourly.precipitation;
-          const windSpeeds = data.hourly.wind_speed_10m;
+      const times = data.hourly.time;
+      const weatherCodes = data.hourly.weather_code;
+      const precipitations = data.hourly.precipitation;
+      const windSpeeds = data.hourly.wind_speed_10m;
 
-          // Get current time and convert to ISO string format
-          const currentTime = new Date().toISOString().slice(0, 16);
+      // Get current time and convert to ISO string format
+      const currentTime = new Date().toISOString().slice(0, 16);
 
-          // Find the closest time entry in the data
-          let closestTimeIndex = 0;
-          let smallestDiff = Math.abs(new Date(times[0]) - new Date(currentTime));
+      // Find the closest time entry in the data
+      let closestTimeIndex = 0;
+      let smallestDiff = Math.abs(new Date(times[0]) - new Date(currentTime));
 
-          for (let i = 1; i < times.length; i++) {
-              const time = times[i];
-              const diff = Math.abs(new Date(time) - new Date(currentTime));
-              if (diff < smallestDiff) {
-                  smallestDiff = diff;
-                  closestTimeIndex = i;
-              }
-          }
-
-          // Get weather data for the closest time
-          const closestWeatherCode = weatherCodes[closestTimeIndex];
-          const closestPrecipitation = precipitations[closestTimeIndex];
-          const closestWindSpeed = windSpeeds[closestTimeIndex];
-
-          // Determine weather description
-          let weatherDescription = weatherDescriptions[closestWeatherCode] || "Unknown";
-
-          if (closestPrecipitation > 0) {
-              weatherDescription = "Rainy";
-          } else if (closestWindSpeed > 15) {
-              weatherDescription = "Windy";
-          } else if (closestWeatherCode >= 95 && closestWeatherCode <= 99) {
-              weatherDescription = "Lightning";
-          } else if (closestWeatherCode === 0 || closestWeatherCode === 1) {
-              weatherDescription = "Sunny";
-          } else if (closestWeatherCode >= 2 && closestWeatherCode <= 3) {
-              weatherDescription = "Cloudy";
-          }
-
-          // Output the resulting weather description
-          console.log(weatherDescription);
-          weather=weatherDescription.toLowerCase();
-      } catch (error) {
-          console.error('Error fetching weather data:', error);
+      for (let i = 1; i < times.length; i++) {
+        const time = times[i];
+        const diff = Math.abs(new Date(time) - new Date(currentTime));
+        if (diff < smallestDiff) {
+          smallestDiff = diff;
+          closestTimeIndex = i;
+        }
       }
+
+      // Get weather data for the closest time
+      const closestWeatherCode = weatherCodes[closestTimeIndex];
+      const closestPrecipitation = precipitations[closestTimeIndex];
+      const closestWindSpeed = windSpeeds[closestTimeIndex];
+
+      // Determine weather description
+      let weatherDescription = weatherDescriptions[closestWeatherCode] || "Unknown";
+
+      if (closestPrecipitation > 0) {
+        weatherDescription = "Rainy";
+      } else if (closestWindSpeed > 15) {
+        weatherDescription = "Windy";
+      } else if (closestWeatherCode >= 95 && closestWeatherCode <= 99) {
+        weatherDescription = "Lightning";
+      } else if (closestWeatherCode === 0 || closestWeatherCode === 1) {
+        weatherDescription = "Sunny";
+      } else if (closestWeatherCode >= 2 && closestWeatherCode <= 3) {
+        weatherDescription = "Cloudy";
+      }
+
+      // Output the resulting weather description
+      console.log(weatherDescription);
+      weather = weatherDescription.toLowerCase();
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+    }
   }
 
   fetchWeather();
 });
 function verify(e) {
+  totalflag = true;
   //this is just to expand the box based on input
   document.getElementById("thebox").style.height = "1px";
   document.getElementById("thebox").style.height =
@@ -119,7 +124,7 @@ function verify(e) {
     }
   } else {
     one.classList.add("redcolor");
-    one.classList.remove("greencolor");
+    one.classList.remove("greencolor"); totalflag = false;
   }
   //section 2
   if (CurrentCount >= 2) {
@@ -132,8 +137,8 @@ function verify(e) {
       if (CurrentCount == 2) {
         CurrentCount++;
       }
-    }else {
-      two.classList.remove("greencolor");
+    } else {
+      two.classList.remove("greencolor"); totalflag = false;
       two.classList.add("redcolor");
     }
   }
@@ -148,7 +153,7 @@ function verify(e) {
         CurrentCount++;
       }
     } else {
-      three.classList.remove("greencolor");
+      three.classList.remove("greencolor"); totalflag = false;
       three.classList.add("redcolor");
     }
   }
@@ -164,7 +169,7 @@ function verify(e) {
         CurrentCount++;
       }
     } else {
-      four.classList.remove("greencolor");
+      four.classList.remove("greencolor"); totalflag = false;
       four.classList.add("redcolor");
     }
   }
@@ -179,7 +184,7 @@ function verify(e) {
         CurrentCount++;
       }
     } else {
-      five.classList.remove("greencolor");
+      five.classList.remove("greencolor"); totalflag = false;
       five.classList.add("redcolor");
     }
   }
@@ -194,7 +199,7 @@ function verify(e) {
         CurrentCount++;
       }
     } else {
-      six.classList.remove("greencolor");
+      six.classList.remove("greencolor"); totalflag = false;
       six.classList.add("redcolor");
     }
   }
@@ -216,7 +221,7 @@ function verify(e) {
         CurrentCount++;
       }
     } else {
-      seven.classList.remove("greencolor");
+      seven.classList.remove("greencolor"); totalflag = false;
       seven.classList.add("redcolor");
     }
   }
@@ -232,7 +237,7 @@ function verify(e) {
         CurrentCount++;
       }
     } else {
-      eight.classList.remove("greencolor");
+      eight.classList.remove("greencolor"); totalflag = false;
       eight.classList.add("redcolor");
     }
   }
@@ -251,7 +256,7 @@ function verify(e) {
         CurrentCount++;
       }
     } else {
-      nine.classList.remove("greencolor");
+      nine.classList.remove("greencolor"); totalflag = false;
       nine.classList.add("redcolor");
     }
   }
@@ -266,7 +271,7 @@ function verify(e) {
         CurrentCount++;
       }
     } else {
-      ten.classList.remove("greencolor");
+      ten.classList.remove("greencolor"); totalflag = false;
       ten.classList.add("redcolor");
     }
   }
@@ -296,7 +301,7 @@ function verify(e) {
         CurrentCount++;
       }
     } else {
-      eleven.classList.remove("greencolor");
+      eleven.classList.remove("greencolor"); totalflag = false;
       eleven.classList.add("redcolor");
     }
   }
@@ -311,7 +316,7 @@ function verify(e) {
         CurrentCount++;
       }
     } else {
-      twelve.classList.remove("greencolor");
+      twelve.classList.remove("greencolor"); totalflag = false;
       twelve.classList.add("redcolor");
     }
   }
@@ -326,7 +331,7 @@ function verify(e) {
         CurrentCount++;
       }
     } else {
-      thirteen.classList.remove("greencolor");
+      thirteen.classList.remove("greencolor"); totalflag = false;
       thirteen.classList.add("redcolor");
     }
   }
@@ -369,7 +374,7 @@ function verify(e) {
         CurrentCount++;
       }
     } else {
-      fiften.classList.remove("greencolor");
+      fiften.classList.remove("greencolor"); totalflag = false;
       fiften.classList.add("redcolor");
     }
   }
@@ -386,11 +391,11 @@ function verify(e) {
   //section 17
   seventeen = document.getElementById("17");
   if (CurrentCount >= 17) {
-    numberlist=valueofinputbox.match(/\d+/g);
+    numberlist = valueofinputbox.match(/\d+/g);
     flag = false;
     if (numberlist != null) {
       for (i = 0; i < numberlist.length; i++) {
-        if(numberlist[i]==30) flag=true;
+        if (numberlist[i] == 30) flag = true;
       }
     }
     if (flag) {
@@ -402,7 +407,7 @@ function verify(e) {
         CurrentCount++;
       }
     } else {
-      seventeen.classList.remove("greencolor");
+      seventeen.classList.remove("greencolor"); totalflag = false;
       seventeen.classList.add("redcolor");
     }
   }
@@ -426,7 +431,7 @@ function verify(e) {
       console.log("error");
       var chilongangry = "🤓".repeat(valueofinputbox.length);
       document.getElementById("thebox").value = chilongangry;
-      eighteen.classList.remove("greencolor");
+      eighteen.classList.remove("greencolor"); totalflag = false;
       eighteen.classList.add("redcolor");
     }
   }
@@ -441,10 +446,11 @@ function verify(e) {
         CurrentCount++;
       }
     } else {
-      nineten.classList.remove("greencolor");
+      nineten.classList.remove("greencolor"); totalflag = false;
       nineten.classList.add("redcolor");
     }
   }
+  //section 20
   twozero = document.getElementById("20");
   if (CurrentCount >= 20) {
     if (valueofinputbox.toLowerCase().includes(weather)) {
@@ -455,10 +461,101 @@ function verify(e) {
         CurrentCount++;
       }
     } else {
-      twozero.classList.remove("greencolor");
+      twozero.classList.remove("greencolor"); totalflag = false;
       twozero.classList.add("redcolor");
     }
   }
+  //section 21
+  twoone = document.getElementById("21");
+  if (CurrentCount >= 21) {
+    if (valueofinputbox.includes("Συνδεδεμένο Λύκειο του Εθνικού Κανονικού Πανεπιστημίου της Ταϊβάν")) {
+      //fit req
+      twoone.classList.add("greencolor");
+      twoone.classList.remove("redcolor");
+      if (CurrentCount == 21) {
+        CurrentCount++;
+      }
+    } else {
+      twoone.classList.remove("greencolor"); totalflag = false;
+      twoone.classList.add("redcolor");
+    }
+  }
+  //section 22
+  twotwo = document.getElementById("22");
+  if (CurrentCount >= 22) {
+    if (valueofinputbox.includes("password")) {
+      //fit req
+      twotwo.classList.add("greencolor");
+      twotwo.classList.remove("redcolor");
+      if (CurrentCount == 22) {
+        CurrentCount++;
+      }
+    } else {
+      twotwo.classList.remove("greencolor"); totalflag = false;
+      twotwo.classList.add("redcolor");
+    }
+  }
+  //section 23
+  twothree = document.getElementById("23");
+  if (CurrentCount >= 23) {
+    if (valueofinputbox.includes('ac/V@EyMzkBrS">L')) {
+      //fit req
+      twothree.classList.add("greencolor");
+      twothree.classList.remove("redcolor");
+      if (CurrentCount == 23) {
+        CurrentCount++;
+      }
+    } else {
+      twothree.classList.remove("greencolor"); totalflag = false;
+      twothree.classList.add("redcolor");
+    }
+  }
+  //section 24
+  if (CurrentCount == 24) {
+    //replace words with emoji bomb;
+    let arr = valueofinputbox.split('');
+    const len = arr.length;
+    // n = Math.min(n, len);//safe check
+    n = len / 10;
+    let indices = Array.from(Array(len).keys());
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+    for (let i = 0; i < n; i++) {
+      arr[indices[i]] = '💣';
+    }
+    document.getElementById("thebox").value = arr.join('');
+    sleep(500).then(() => {
+      console.log('start explosion');
+      t.classList.add("shake");//explode
+      //change all to underline
+      let arr = valueofinputbox.split('');
+      const len = arr.length;
+      // n = Math.min(n, len);//safe check
+      n = len - (len / 20);
+      let indices = Array.from(Array(len).keys());
+      for (let i = indices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [indices[i], indices[j]] = [indices[j], indices[i]];
+      }
+      for (let i = 0; i < n; i++) {
+        arr[indices[i]] = '_';
+      }
+      arr.push('🐛');//temp prevent explode
+      document.getElementById("thebox").value = arr.join('');
+    });
+    CurrentCount++;
+  }
+  //first replace some words with emoji bomb and then shake the textarea, then change the text to _ and some random text
+  //section 25
+  //finally
+  if (CurrentCount == 25) {
+    if (totalflag == true) {
+      console.log("Passed you win");
+    }
+  }
+
 }
 function getEmojiCodePoints(emoji) {
   const codePoints = [];

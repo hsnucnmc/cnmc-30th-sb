@@ -18,8 +18,8 @@ share this to your friend
 worm prevent dieing
 background color code of hsnu logo (three digits version and six digits version are both allowed)#660000 or #600
 what is the weather outside (HSNU)?(based on WMO weather code) Rainy?Windy?Lightning?Sunny?Cloudy?
-
-
-
+must include the greek translation of the full name of hsnu: Συνδεδεμένο ανώτερο γυμνάσιο του Εθνικού Κανονικού Πανεπιστημίου της Ταϊβάν / το Συνδεδεμένο Λύκειο του Εθνικού Κανονικού Πανεπιστημίου της Ταϊβάν
+\- .... . / .- -. ... .-- . .-. / -- ..- ... - / .. -. -.-. .-.. ..- -.. . / .-- --- .-. -.. / .-..-. .--. .- ... ... .-- --- .-. -.. .-..-.
+go to our website and find out the uuid(v7) at the bottom of front page ac/V@EyMzkBrS">L
 boom ha
 retype it

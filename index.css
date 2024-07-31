@@ -1,6 +1,7 @@
-.main{
+.main {
     margin-top: 10em;
 }
+
 .title {
     font-size: 5em;
     font-family: 'Courier New', Courier, monospace;
@@ -17,7 +18,7 @@ body {
     font-size: 25px;
     margin-left: 10px;
     margin-right: 10px;
-    overflow:hidden
+    overflow: hidden
 }
 
 textarea {
@@ -35,17 +36,19 @@ textarea {
 .redcolor {
     background-color: #D87968;
     display: inline-block;
-    order:2;
+    order: 2;
 }
 
 .greencolor {
     background-color: rgb(210, 243, 160);
     display: inline-block;
-    order:1;
+    order: 1;
 }
-.firstblock{
+
+.firstblock {
     display: inline-block;
 }
+
 .numberlist {
     border-bottom: black 1px;
 }
@@ -65,59 +68,72 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: center
-    
 }
-img{
+
+img {
     display: block;
     margin: auto;
     width: 360px;
 }
-footer{
+
+footer {
     margin-top: 3em;
     text-align: center;
 }
-.styled:hover{
+
+.styled:hover {
     background-color: aquamarine;
 }
-.sharebtn{
+
+.sharebtn {
     text-align: right;
     border: 10px none;
     border-radius: 10px;
-    padding:5px;
+    padding: 5px;
     background-color: antiquewhite;
     border: #000 solid 2px;
     /* background-image: linear-gradient(to left, #743ad5, #d53a9d); */
     width: fit-content;
     position: absolute;
-    top:20px;
-    right:20px;
+    top: 20px;
+    right: 20px;
     float: right;
-    transition: all .2s ease-in-out; 
+    transition: all .2s ease-in-out;
     cursor: pointer;
     user-select: none;
 }
-.sharebtn:hover{
-    transform: scale(1.1); 
+
+.sharebtn:hover {
+    transform: scale(1.1);
     cursor: pointer;
 }
 
 /* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  
-  /* Modal Content */
-  .modal-content {
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -125,24 +141,46 @@ footer{
     text-align: center;
     border: 1px solid #888;
     width: 80%;
-  }
-  .modal-content textarea{
+}
+
+.modal-content textarea {
     font-size: xx-large;
     width: fit-content;
     height: fit-content;
-  }
-  
-  /* The Close Button */
-  .close {
+}
+
+/* The Close Button */
+.close {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
+}
+
+.close:hover,
+.close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+/*bomb animation*/
+@keyframes shake {
+    0% { transform: rotate(0deg); }
+    10% { transform: rotate(6deg); }
+    20% { transform: rotate(-6deg); }
+    30% { transform: rotate(12deg); }
+    40% { transform: rotate(-12deg); }
+    50% { transform: rotate(18deg); }
+    60% { transform: rotate(-18deg); }
+    70% { transform: rotate(20deg); }
+    80% { transform: rotate(-20deg); }
+    90% { transform: rotate(16deg); }
+    100% { transform: rotate(0deg); }
+  }
+  
+  
+  .shake {
+    display: inline-block; /* Ensure the element can be animated properly */
+    animation: shake 1s ease-in-out; /* Duration is set to 1s for 10 shakes */
   }
