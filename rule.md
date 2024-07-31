@@ -17,7 +17,7 @@ share this to your friend
 113年會考數學非選二第一小題的答案 (30)
 worm prevent dieing
 background color code of hsnu logo (three digits version and six digits version are both allowed)#660000 or #600
-
+what is the weather outside (HSNU)?(based on WMO weather code) Rainy?Windy?Lightning?Sunny?Cloudy?
 
 
 
