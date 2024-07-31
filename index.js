@@ -41,6 +41,9 @@ function verify(e) {
       if (CurrentCount == 2) {
         CurrentCount++;
       }
+    }else {
+      two.classList.remove("greencolor");
+      two.classList.add("redcolor");
     }
   }
   //section 3
@@ -327,26 +330,26 @@ function verify(e) {
       eighteen.classList.remove("greencolor");
       eighteen.classList.add("redcolor");
     }
-}
-//section 19
-nineten = document.getElementById("19");
-if (CurrentCount >= 19) {
+  }
+  //section 19
+  nineten = document.getElementById("19");
+  if (CurrentCount >= 19) {
     if (valueofinputbox.includes("#600") || valueofinputbox.includes("#660000")) {
-        //fit req
-        nineten.classList.add("greencolor");
-        nineten.classList.remove("redcolor");
-        if (CurrentCount == 19) {
-            CurrentCount++;
-        }
+      //fit req
+      nineten.classList.add("greencolor");
+      nineten.classList.remove("redcolor");
+      if (CurrentCount == 19) {
+        CurrentCount++;
+      }
     } else {
-        nineten.classList.remove("greencolor");
-        nineten.classList.add("redcolor");
+      nineten.classList.remove("greencolor");
+      nineten.classList.add("redcolor");
     }
-}
+  }
 }
 function getEmojiCodePoints(emoji) {
   const codePoints = [];
-  for (let i = 0; i < emoji.length; ) {
+  for (let i = 0; i < emoji.length;) {
     // 獲取單個 Unicode 代碼點
     const codePoint = emoji.codePointAt(i);
     codePoints.push(codePoint);
@@ -422,52 +425,52 @@ document.body.addEventListener("keydown", function (e) {
   }
 });
 
-setInterval(function warmeat() {
-  console.log("exec");
-  warmlocation = 0;
-  let valueofinputbox = document.getElementById("thebox").value;
-  if (valueofinputbox.length != 0) {
-    if (valueofinputbox.includes("🐛")) {
-      for (i = valueofinputbox.length - 2; i > 0; i--) {
-        if (areEmojisEqual(valueofinputbox[i + 1], "🐛")) {
-          document.getElementById("thebox").value =
-            valueofinputbox.substring(0, i) + valueofinputbox.substring(i + 1);
-          break;
-        }
-      }
-    }
-  }
-  verify();
-}, 1500);
+// setInterval(function warmeat() {
+//   console.log("exec");
+//   warmlocation = 0;
+//   let valueofinputbox = document.getElementById("thebox").value;
+//   if (valueofinputbox.length != 0) {
+//     if (valueofinputbox.includes("🐛")) {
+//       for (i = valueofinputbox.length - 2; i > 0; i--) {
+//         if (areEmojisEqual(valueofinputbox[i + 1], "🐛")) {
+//           document.getElementById("thebox").value =
+//             valueofinputbox.substring(0, i) + valueofinputbox.substring(i + 1);
+//           break;
+//         }
+//       }
+//     }
+//   }
+//   verify();
+// }, 1500);
 
 //wutcworking
 function analyzeMETAR(metar) {
-    // Extract weather phenomena and sky conditions from METAR
-    const weatherPhenomena = metar.match(/(.*?)\s+(\d{4})(Z|UTC)/);
-    const skyCondition = metar.match(/\s(SKC|CLR|FEW|SCT|BKN|OVC)\d{3}/);
+  // Extract weather phenomena and sky conditions from METAR
+  const weatherPhenomena = metar.match(/(.*?)\s+(\d{4})(Z|UTC)/);
+  const skyCondition = metar.match(/\s(SKC|CLR|FEW|SCT|BKN|OVC)\d{3}/);
 
-    // Check for specific weather phenomena
-    if(weatherPhenomena!=null) {const isRainy = /RA/.test(weatherPhenomena[1]);}
+  // Check for specific weather phenomena
+  if (weatherPhenomena != null) { const isRainy = /RA/.test(weatherPhenomena[1]); }
 
-    // Check for sunny condition (clear skies)
-    const isSunny = (weatherPhenomena!=null&&!isRainy) && (skyCondition && (skyCondition[1] === 'SKC' || skyCondition[1] === 'CLR'));
+  // Check for sunny condition (clear skies)
+  const isSunny = (weatherPhenomena != null && !isRainy) && (skyCondition && (skyCondition[1] === 'SKC' || skyCondition[1] === 'CLR'));
 
-    // Check for cloudy condition (excluding rain)
-    const isCloudy = (weatherPhenomena!=null&&!isRainy) && (skyCondition && (skyCondition[1] === 'FEW' || skyCondition[1] === 'SCT' || skyCondition[1] === 'BKN' || skyCondition[1] === 'OVC'));
+  // Check for cloudy condition (excluding rain)
+  const isCloudy = (weatherPhenomena != null && !isRainy) && (skyCondition && (skyCondition[1] === 'FEW' || skyCondition[1] === 'SCT' || skyCondition[1] === 'BKN' || skyCondition[1] === 'OVC'));
 
-    // Determine the weather condition based on the analysis
-    let weatherCondition;
-    if (isSunny) {
-        weatherCondition = "Sunny";
-    } else if (weatherPhenomena!=null&&isRainy) {
-        weatherCondition = "Rainy";
-    } else if (isCloudy) {
-        weatherCondition = "Cloudy (but not rainy)";
-    } else {
-        weatherCondition = "Other";
-    }
+  // Determine the weather condition based on the analysis
+  let weatherCondition;
+  if (isSunny) {
+    weatherCondition = "Sunny";
+  } else if (weatherPhenomena != null && isRainy) {
+    weatherCondition = "Rainy";
+  } else if (isCloudy) {
+    weatherCondition = "Cloudy (but not rainy)";
+  } else {
+    weatherCondition = "Other";
+  }
 
-    return weatherCondition;
+  return weatherCondition;
 }
 
 // // Example METAR
