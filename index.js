@@ -284,7 +284,7 @@ function verify(e) {
   //section 5
   five = document.getElementById("5");
   if (CurrentCount >= 5) {
-    if (valueofinputbox.includes("cnmc")) {
+    if (valueofinputbox.toLowerCase().includes("cnmc")) {
       //fit req
       five.classList.add("greencolor");
       five.classList.remove("redcolor");
@@ -299,7 +299,7 @@ function verify(e) {
   //section 6
   six = document.getElementById("6");
   if (CurrentCount >= 6) {
-    if (valueofinputbox.includes("west") || valueofinputbox.includes("West")) {
+    if (valueofinputbox.toLowerCase().includes("west") || valueofinputbox.includes("西")) {
       //fit req
       six.classList.add("greencolor");
       six.classList.remove("redcolor");
@@ -397,7 +397,7 @@ function verify(e) {
         } else {
           finalnum = Number(thlistofpossibleans[i][0]);
         }
-        if (5 <= finalnum && finalnum <= 10) {
+        if (2 <= finalnum && finalnum <= 15) {
           flag = true;
         }
       }
@@ -475,7 +475,7 @@ function verify(e) {
   fiften = document.getElementById("15");
   if (CurrentCount >= 15) {
     if (
-      valueofinputbox.includes("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+      valueofinputbox.includes("dQw4w9WgXcQ")
     ) {
       //fit req
       fiften.classList.add("greencolor");
@@ -509,6 +509,8 @@ function verify(e) {
         if (numberlist[i] == 30) flag = true;
       }
     }
+    if (valueofinputbox.includes("三十"))
+        flag = true;
     if (flag) {
       //fit req
       // TODO
@@ -551,7 +553,7 @@ function verify(e) {
   //section 19
   nineten = document.getElementById("19");
   if (CurrentCount >= 19) {
-    if (valueofinputbox.includes("#fff") || valueofinputbox.includes("#ffffff")) {
+    if (valueofinputbox.toLowerCase().includes("#fff")) {
       //fit req
       nineten.classList.add("greencolor");
       nineten.classList.remove("redcolor");
@@ -581,7 +583,27 @@ function verify(e) {
   //section 21
   twoone = document.getElementById("21");
   if (CurrentCount >= 21) {
-    if (valueofinputbox.includes("Συνδεδεμένο Λύκειο του Εθνικού Κανονικού Πανεπιστημίου της Ταϊβάν")) {
+    let greek_count = 0;
+    if (valueofinputbox.toLowerCase().includes("Συνδεδεμένο".toLowerCase()))
+        greek_count++;
+    if (valueofinputbox.toLowerCase().includes("Εθνικού".toLowerCase()))
+        greek_count++;
+    if (valueofinputbox.toLowerCase().includes("Κανονικού".toLowerCase()))
+        greek_count++;
+    if (valueofinputbox.toLowerCase().includes("Πανεπιστημίου".toLowerCase()))
+        greek_count++;
+    if (valueofinputbox.toLowerCase().includes("Ταϊβάν".toLowerCase()))
+        greek_count++;
+    if (valueofinputbox.toLowerCase().includes("Γυμνάσιο".toLowerCase()))
+        greek_count++;
+    if (valueofinputbox.toLowerCase().includes("Εθνικό".toLowerCase()))
+        greek_count++;
+    if (valueofinputbox.toLowerCase().includes("Πανεπιστήμιο".toLowerCase()))
+        greek_count++;
+    if (valueofinputbox.toLowerCase().includes("Κανονικό".toLowerCase()))
+        greek_count++;
+
+    if (greek_count >= 3) {
       //fit req
       twoone.classList.add("greencolor");
       twoone.classList.remove("redcolor");
