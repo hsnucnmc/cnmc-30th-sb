@@ -8,6 +8,25 @@ console.log(
 );
 realwin=false;
 
+const numConfetti = 100; // Number of confetti pieces
+            const colors = ['#e74c3c', '#3498db', '#2ecc71', '#f1c40f', '#9b59b6'];
+
+            function createConfetti() {
+                const container = document.querySelector('.confetti-container');
+                for (let i = 0; i < numConfetti; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = `${Math.random() * 100}vw`;
+                    confetti.style.top = `${Math.random() * 100}vh`;
+                    confetti.style.width = `${Math.random() * 15 + 5}px`; // Random width between 5px and 20px
+                    confetti.style.height = `${Math.random() * 15 + 5}px`; // Random height between 5px and 20px
+                    confetti.style.animationDuration = `${Math.random() * 3 + 2}s`; // Random duration between 2s and 5s
+                    confetti.style.animationDelay = `${Math.random() * 5}s`; // Random delay between 0s and 5s
+                    container.appendChild(confetti);
+                }
+            }
+
 cc = true;
 warm = true;
 bool123 = true;
@@ -660,7 +679,9 @@ function verify(e) {
       twofive.classList.add("greencolor");
       twofive.classList.remove("redcolor");
         realwin = true;
+        createConfetti();
       //win
+
     }
       console.log("Passed you win");
     }
@@ -809,29 +830,3 @@ setInterval(function warmeat() {
 //   verify();
 // }, 1500);
 
-document.addEventListener('DOMContentLoaded', () => {
-  const bool123 = true; // Set this to false to disable confetti
-  const numConfetti = 100; // Number of confetti pieces
-  const colors = ['#e74c3c', '#3498db', '#2ecc71', '#f1c40f', '#9b59b6'];
-
-  function createConfetti() {
-      const container = document.querySelector('.confetti-container');
-      container.style.display = 'block'; // Show confetti container
-      for (let i = 0; i < numConfetti; i++) {
-          const confetti = document.createElement('div');
-          confetti.classList.add('confetti');
-          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-          confetti.style.left = `${Math.random() * 100}vw`;
-          confetti.style.top = `${Math.random() * 100}vh`;
-          confetti.style.width = `${Math.random() * 15 + 5}px`; // Random width between 5px and 20px
-          confetti.style.height = `${Math.random() * 15 + 5}px`; // Random height between 5px and 20px
-          confetti.style.animationDuration = `${Math.random() * 3 + 2}s`; // Random duration between 2s and 5s
-          confetti.style.animationDelay = `${Math.random() * 5}s`; // Random delay between 0s and 5s
-          container.appendChild(confetti);
-      }
-  }
-
-  if (realwin) {
-      createConfetti();
-  }
-});
