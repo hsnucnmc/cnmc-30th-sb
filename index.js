@@ -13,7 +13,6 @@ password123 = "";
 clickbtn = false;
 weather = '';
 fake=false;
-document.getElementById('password').textContent
 modal1 = document.getElementById("alert1");
 s1 = true;
 c1 = false;
@@ -606,7 +605,7 @@ function verify(e) {
   //section 24
   twofour= document.getElementById('24');
   if (CurrentCount == 24) {
-    password123 = valueofinputbox
+    password123 = valueofinputbox;
     twofour.classList.add("redcolor");
     //replace words with emoji bomb;
     let arr = valueofinputbox.split('');
