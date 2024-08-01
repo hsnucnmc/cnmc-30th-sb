@@ -6,11 +6,87 @@ console.log("If you can read this text, you are a great man. Welcome to CNMC.");
 console.log(
   "Scroll down to the bottom of register list find B02 網管小組 and put it on your first priority."
 );
+cc = true;
 warm = true;
 bool123 = true;
+password123 = "";
 clickbtn = false;
 weather = '';
 fake=false;
+document.getElementById('password').textContent
+modal1 = document.getElementById("alert1");
+s1 = true;
+c1 = false;
+modal2 = document.getElementById("alert2");
+s2 = true;
+c2 = false;
+modal3 = document.getElementById("alert3");
+s3 = true;
+c3 = false;
+function share1() {
+  modal1.style.display = "block";
+  clickbtn = true;
+  s1 = false;
+  verify();
+}
+function close1() {
+  modal1.style.display = "none";
+  c1 = true;
+  
+}
+document.getElementsByClassName("close")[0].onclick = function () {
+  modal1.style.display = "none";
+  c1 = true;
+};
+
+window.onclick = function (event) {
+  if (event.target == modal1) {
+    modal1.style.display = "none";
+  }
+};
+function share2() {
+  modal2.style.display = "block";
+  clickbtn = true;
+  s2 = false;
+  verify();
+}
+function close2() {
+  modal2.style.display = "none";
+  c2 = true;
+  
+}
+document.getElementsByClassName("close")[0].onclick = function () {
+  modal2.style.display = "none";
+  c2 = true;
+};
+
+window.onclick = function (event) {
+  if (event.target == modal2) {
+    modal2.style.display = "none";
+  }
+};
+function share3() {
+  modal3.style.display = "block";
+  clickbtn = true;
+  s3 = false;
+  verify();
+}
+function close3() {
+  modal3.style.display = "none";
+  c3 = true;
+  
+}
+document.getElementsByClassName("close")[0].onclick = function () {
+  modal3.style.display = "none";
+  c3 = true;
+};
+
+window.onclick = function (event) {
+  if (event.target == modal3) {
+    modal3.style.display = "none";
+  }
+};
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }// public function
@@ -104,6 +180,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   fetchWeather();
 });
+
+const editor = document.getElementById('thebox');
+
+// 監聽鍵盤事件
+editor.addEventListener('keydown', function(event) {
+    // 檢查是否按下了 Ctrl 和 Z 鍵
+    if (event.ctrlKey && event.key === 'z') {
+        // 取消事件的默認行為（即撤銷操作）
+        event.preventDefault();
+    }
+});
+
 function verify(e) {
   totalflag = true;
   //this is just to expand the box based on input
@@ -338,7 +426,10 @@ function verify(e) {
   //section 14
   fourteen = document.getElementById("14");
   if (CurrentCount >= 14) {
-    if (bool123 == true) {
+    if(s1){
+      share1();
+    }
+    if (bool123 == true && c1) {
       //add 啟龍
       var randomIndex1 = Math.floor(Math.random() * valueofinputbox.length);
       var randomIndex2 = Math.floor(Math.random() * valueofinputbox.length);
@@ -414,6 +505,9 @@ function verify(e) {
   //section 18
   eighteen = document.getElementById("18");
   if (CurrentCount >= 18) {
+    if(s2 && cc == false){
+      share2();
+    }if(c2){
     if (warm) {
       chilongangry = document.getElementById("thebox").value + "🐛";
       document.getElementById("thebox").value = chilongangry;
@@ -427,12 +521,12 @@ function verify(e) {
       if (CurrentCount == 18) {
         CurrentCount++;
       }
-    } else {
+    } else if(CurrentCount<24){
       var chilongangry = "🤓".repeat(valueofinputbox.length/2);
       document.getElementById("thebox").value = chilongangry;
       eighteen.classList.remove("greencolor"); totalflag = false;
       eighteen.classList.add("redcolor");
-    }
+    }}
   }
   //section 19
   nineten = document.getElementById("19");
@@ -482,7 +576,7 @@ function verify(e) {
   //section 22
   twotwo = document.getElementById("22");
   if (CurrentCount >= 22) {
-    if (valueofinputbox.includes("password")) {
+    if (valueofinputbox.toLowerCase().includes("password")) {
       //fit req
       twotwo.classList.add("greencolor");
       twotwo.classList.remove("redcolor");
@@ -512,6 +606,7 @@ function verify(e) {
   //section 24
   twofour= document.getElementById('24');
   if (CurrentCount == 24) {
+    password123 = valueofinputbox
     twofour.classList.add("redcolor");
     //replace words with emoji bomb;
     let arr = valueofinputbox.split('');
@@ -543,17 +638,18 @@ function verify(e) {
       for (let i = 0; i < n; i++) {
         arr[indices[i]] = '_';
       }
-      arr.push('🐛');//temp prevent explode
       document.getElementById("thebox").value = arr.join('');
     });
     twofour.classList.remove("redcolor");
     twofour.classList.add("greencolor");
     CurrentCount++;
+    share3();
   }
   //first replace some words with emoji bomb and then shake the textarea, then change the text to _ and some random text
   //section 25
   //finally
   twofive = document.getElementById('25');
+  document.getElementById('displayText').textContent = password123;
   if (CurrentCount == 25) {
     twofive.classList.add("redcolor");
     if (totalflag == true) {
@@ -561,7 +657,9 @@ function verify(e) {
         fake=true;
       }else{
       twofive.classList.add("greencolor");
-      twofive.classList.remove("redcolor");}
+      twofive.classList.remove("redcolor");
+      //win
+    }
       console.log("Passed you win");
     }
   } 
@@ -634,10 +732,12 @@ modal = document.getElementById("myModal");
 function share() {
   modal.style.display = "block";
   clickbtn = true;
+  cc = false;
   verify();
 }
 function close() {
   modal.style.display = "none";
+  cc = true;
 }
 document.getElementsByClassName("close")[0].onclick = function () {
   modal.style.display = "none";
@@ -647,14 +747,23 @@ window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
+  
 };
 document.body.addEventListener("keydown", function (e) {
   if (e.key == "Escape") {
-    if (modal.style.display == "block") {
       modal.style.display = "none";
-    }
+      modal1.style.display = "none";
+      modal2.style.display = "none";
+      modal3.style.display = "none";
   }
 });
+// document.body.addEventListener("keydown", function (e) {
+//   if (e.key == "Escape") {
+//     if (modal.style.display == "block") {
+//       modal.style.display = "none";
+//     }
+//   }
+// });
 setInterval(function warmeat() {
   let valueofinputbox = document.getElementById("thebox").value;
 
