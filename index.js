@@ -428,8 +428,7 @@ function verify(e) {
         CurrentCount++;
       }
     } else {
-      console.log("error");
-      var chilongangry = "🤓".repeat(valueofinputbox.length);
+      var chilongangry = "🤓".repeat(valueofinputbox.length/2);
       document.getElementById("thebox").value = chilongangry;
       eighteen.classList.remove("greencolor"); totalflag = false;
       eighteen.classList.add("redcolor");
@@ -612,6 +611,17 @@ setInterval(function chilong() {
       }
       // console.log(modifiedString);
     }
+    // for (let i = 0; i < modifiedString.length; i++) {
+    //   // 確保不超出範圍
+    //   if (
+    //     i + 1 < modifiedString.length &&
+    //     areEmojisEqual(modifiedString[i + 1], "🐛")
+    //   ) {
+    //     // 將前一個字元替換為 '🐛'
+    //     modifiedString[i] = "";
+    //   }
+    // }
+
 
     // 將修改後的字符陣列轉回字串並更新到輸入框
     document.getElementById("thebox").value = modifiedString.join("");
@@ -645,7 +655,31 @@ document.body.addEventListener("keydown", function (e) {
     }
   }
 });
+setInterval(function warmeat() {
+  let valueofinputbox = document.getElementById("thebox").value;
 
+  if (valueofinputbox.length != 0) {
+    // 將字串轉換為字符陣列，以便進行修改
+    let modifiedString = [...valueofinputbox];
+
+    
+    for (let i = 0; i < modifiedString.length; i++) {
+      // 確保不超出範圍
+      if (
+        i + 1 < modifiedString.length &&
+        areEmojisEqual(modifiedString[i + 1], "🐛")
+      ) {
+        // 將前一個字元替換為 '🐛'
+        modifiedString[i] = "";
+      }
+    }
+
+
+    // 將修改後的字符陣列轉回字串並更新到輸入框
+    document.getElementById("thebox").value = modifiedString.join("");
+  }
+  verify();
+}, 5000);
 // setInterval(function warmeat() {
 //   console.log("exec");
 //   warmlocation = 0;
