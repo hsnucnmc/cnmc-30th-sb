@@ -6,26 +6,30 @@ console.log("If you can read this text, you are a great man. Welcome to CNMC.");
 console.log(
   "Scroll down to the bottom of register list find B02 網管小組 and put it on your first priority."
 );
-realwin=false;
+realwin = false;
 
 const numConfetti = 100; // Number of confetti pieces
-            const colors = ['#e74c3c', '#3498db', '#2ecc71', '#f1c40f', '#9b59b6'];
+let totalConfetti = 0;
+const colors = ['#e74c3c', '#3498db', '#2ecc71', '#f1c40f', '#9b59b6'];
 
-            function createConfetti() {
-                const container = document.querySelector('.confetti-container');
-                for (let i = 0; i < numConfetti; i++) {
-                    const confetti = document.createElement('div');
-                    confetti.classList.add('confetti');
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.left = `${Math.random() * 100}vw`;
-                    confetti.style.top = `${Math.random() * 100}vh`;
-                    confetti.style.width = `${Math.random() * 15 + 5}px`; // Random width between 5px and 20px
-                    confetti.style.height = `${Math.random() * 15 + 5}px`; // Random height between 5px and 20px
-                    confetti.style.animationDuration = `${Math.random() * 3 + 2}s`; // Random duration between 2s and 5s
-                    confetti.style.animationDelay = `${Math.random() * 5}s`; // Random delay between 0s and 5s
-                    container.appendChild(confetti);
-                }
-            }
+function createConfetti() {
+  const container = document.querySelector('.confetti-container');
+  for (let i = 0; i < numConfetti; i++) {
+    if (totalConfetti > 2000)
+      return;
+    const confetti = document.createElement('div');
+    totalConfetti++;
+    confetti.classList.add('confetti');
+    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.left = `${Math.random() * 100}vw`;
+    confetti.style.top = `${Math.random() * 100}vh`;
+    confetti.style.width = `${Math.random() * 15 + 5}px`; // Random width between 5px and 20px
+    confetti.style.height = `${Math.random() * 15 + 5}px`; // Random height between 5px and 20px
+    confetti.style.animationDuration = `${Math.random() * 3 + 2}s`; // Random duration between 2s and 5s
+    confetti.style.animationDelay = `${Math.random() * 5}s`; // Random delay between 0s and 5s
+    container.appendChild(confetti);
+  }
+}
 
 cc = true;
 warm = true;
@@ -33,7 +37,7 @@ bool123 = true;
 password123 = "";
 clickbtn = false;
 weather = '';
-fake=false;
+fake = false;
 modal1 = document.getElementById("alert1");
 s1 = true;
 c1 = false;
@@ -52,7 +56,7 @@ function share1() {
 function close1() {
   modal1.style.display = "none";
   c1 = true;
-  
+
 }
 document.getElementsByClassName("close")[0].onclick = function () {
   modal1.style.display = "none";
@@ -73,7 +77,7 @@ function share2() {
 function close2() {
   modal2.style.display = "none";
   c2 = true;
-  
+
 }
 document.getElementsByClassName("close")[0].onclick = function () {
   modal2.style.display = "none";
@@ -94,7 +98,7 @@ function share3() {
 function close3() {
   modal3.style.display = "none";
   c3 = true;
-  
+
 }
 document.getElementsByClassName("close")[0].onclick = function () {
   modal3.style.display = "none";
@@ -204,12 +208,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 const editor = document.getElementById('thebox');
 
 // 監聽鍵盤事件
-editor.addEventListener('keydown', function(event) {
-    // 檢查是否按下了 Ctrl 和 Z 鍵
-    if (event.ctrlKey && event.key === 'z') {
-        // 取消事件的默認行為（即撤銷操作）
-        event.preventDefault();
-    }
+editor.addEventListener('keydown', function (event) {
+  // 檢查是否按下了 Ctrl 和 Z 鍵
+  if (event.ctrlKey && event.key === 'z') {
+    // 取消事件的默認行為（即撤銷操作）
+    event.preventDefault();
+  }
 });
 
 function verify(e) {
@@ -446,7 +450,7 @@ function verify(e) {
   //section 14
   fourteen = document.getElementById("14");
   if (CurrentCount >= 14) {
-    if(s1){
+    if (s1) {
       share1();
     }
     if (bool123 == true && c1) {
@@ -498,7 +502,7 @@ function verify(e) {
       sixten.classList.add("greencolor");
       sixten.classList.remove("redcolor");
     }
-  } 
+  }
   //section 17
   seventeen = document.getElementById("17");
   if (CurrentCount >= 17) {
@@ -510,7 +514,7 @@ function verify(e) {
       }
     }
     if (valueofinputbox.includes("三十"))
-        flag = true;
+      flag = true;
     if (flag) {
       //fit req
       // TODO
@@ -527,28 +531,29 @@ function verify(e) {
   //section 18
   eighteen = document.getElementById("18");
   if (CurrentCount >= 18) {
-    if(s2 && cc == false){
+    if (s2 && cc == false) {
       share2();
-    }if(c2){
-    if (warm) {
-      chilongangry = document.getElementById("thebox").value + "🐛";
-      document.getElementById("thebox").value = chilongangry;
-      valueofinputbox = document.getElementById("thebox").value;
-      warm = false;
-    }
-    if (valueofinputbox.includes("🐛")) {
-      //fit req
-      eighteen.classList.add("greencolor");
-      eighteen.classList.remove("redcolor");
-      if (CurrentCount == 18) {
-        CurrentCount++;
+    } if (c2) {
+      if (warm) {
+        chilongangry = document.getElementById("thebox").value + "🐛";
+        document.getElementById("thebox").value = chilongangry;
+        valueofinputbox = document.getElementById("thebox").value;
+        warm = false;
       }
-    } else if(CurrentCount<24){
-      var chilongangry = "🤓".repeat(valueofinputbox.length/2);
-      document.getElementById("thebox").value = chilongangry;
-      eighteen.classList.remove("greencolor"); totalflag = false;
-      eighteen.classList.add("redcolor");
-    }}
+      if (valueofinputbox.includes("🐛")) {
+        //fit req
+        eighteen.classList.add("greencolor");
+        eighteen.classList.remove("redcolor");
+        if (CurrentCount == 18) {
+          CurrentCount++;
+        }
+      } else if (CurrentCount < 24) {
+        var chilongangry = "🤓".repeat(valueofinputbox.length / 2);
+        document.getElementById("thebox").value = chilongangry;
+        eighteen.classList.remove("greencolor"); totalflag = false;
+        eighteen.classList.add("redcolor");
+      }
+    }
   }
   //section 19
   nineten = document.getElementById("19");
@@ -585,23 +590,23 @@ function verify(e) {
   if (CurrentCount >= 21) {
     let greek_count = 0;
     if (valueofinputbox.toLowerCase().includes("Συνδεδεμένο".toLowerCase()))
-        greek_count++;
+      greek_count++;
     if (valueofinputbox.toLowerCase().includes("Εθνικού".toLowerCase()))
-        greek_count++;
+      greek_count++;
     if (valueofinputbox.toLowerCase().includes("Κανονικού".toLowerCase()))
-        greek_count++;
+      greek_count++;
     if (valueofinputbox.toLowerCase().includes("Πανεπιστημίου".toLowerCase()))
-        greek_count++;
+      greek_count++;
     if (valueofinputbox.toLowerCase().includes("Ταϊβάν".toLowerCase()))
-        greek_count++;
+      greek_count++;
     if (valueofinputbox.toLowerCase().includes("Γυμνάσιο".toLowerCase()))
-        greek_count++;
+      greek_count++;
     if (valueofinputbox.toLowerCase().includes("Εθνικό".toLowerCase()))
-        greek_count++;
+      greek_count++;
     if (valueofinputbox.toLowerCase().includes("Πανεπιστήμιο".toLowerCase()))
-        greek_count++;
+      greek_count++;
     if (valueofinputbox.toLowerCase().includes("Κανονικό".toLowerCase()))
-        greek_count++;
+      greek_count++;
 
     if (greek_count >= 3) {
       //fit req
@@ -646,7 +651,7 @@ function verify(e) {
     }
   }
   //section 24
-  twofour= document.getElementById('24');
+  twofour = document.getElementById('24');
   if (CurrentCount == 24) {
     password123 = valueofinputbox;
     twofour.classList.add("redcolor");
@@ -695,19 +700,19 @@ function verify(e) {
   if (CurrentCount == 25) {
     twofive.classList.add("redcolor");
     if (totalflag == true) {
-      if(fake==false){
-        fake=true;
-      }else{
-      twofive.classList.add("greencolor");
-      twofive.classList.remove("redcolor");
+      if (fake == false) {
+        fake = true;
+      } else {
+        twofive.classList.add("greencolor");
+        twofive.classList.remove("redcolor");
         realwin = true;
         createConfetti();
-      //win
+        //win
 
-    }
+      }
       console.log("Passed you win");
     }
-  } 
+  }
 
 }
 function getEmojiCodePoints(emoji) {
@@ -792,14 +797,14 @@ window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
-  
+
 };
 document.body.addEventListener("keydown", function (e) {
   if (e.key == "Escape") {
-      modal.style.display = "none";
-      modal1.style.display = "none";
-      modal2.style.display = "none";
-      modal3.style.display = "none";
+    modal.style.display = "none";
+    modal1.style.display = "none";
+    modal2.style.display = "none";
+    modal3.style.display = "none";
   }
 });
 // document.body.addEventListener("keydown", function (e) {
@@ -816,7 +821,7 @@ setInterval(function warmeat() {
     // 將字串轉換為字符陣列，以便進行修改
     let modifiedString = [...valueofinputbox];
 
-    
+
     for (let i = 0; i < modifiedString.length; i++) {
       // 確保不超出範圍
       if (
